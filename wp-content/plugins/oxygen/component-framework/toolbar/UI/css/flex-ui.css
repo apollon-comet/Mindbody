@@ -1,0 +1,4655 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#ct-ui-overlay{
+	position: absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+	cursor: copy;
+}
+
+body.choosing-selector #ct-ui-overlay{
+	display: block;
+}
+
+/* ----------- */
+
+#oxygen-ui {
+	display: none;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#oxygen-topbar {
+	background-color: #2E3840;
+	font-family: "Source Sans Pro", serif;
+	-webkit-font-smoothing: antialiased;
+	width: 100%;
+	height: 55px;
+}
+
+#oxygen-sidebar {
+	width: 300px;
+	height: calc(100vh - 55px);
+	display: flex;
+	flex-direction: column;
+	background-color: #4E5860;
+	font-family: "Source Sans Pro", serif;
+	-webkit-font-smoothing: antialiased;
+	
+	position: fixed;
+	left: 0;
+}
+
+/* global styling for inputs */
+#oxygen-sidebar input:focus, #oxygen-sidebar textarea:focus  {
+	outline: none;
+}
+
+.oxygen-option-default .oxygen-select-box-current,
+.oxygen-option-default .oxygen-measure-box input,
+.oxygen-option-default.oxygen-measure-box input, 
+input.oxygen-option-default,
+.oxygen-select-box-current.oxygen-option-default,
+.oxygen-option-default input {
+	opacity: 0.3;
+}
+.oxygen-disabled {
+	pointer-events: none;
+	opacity: 0.2 !important;
+}
+.oxygen-no-margin {
+	margin: 0 !important;
+}
+
+/* oxygen sidebar top */
+
+.oxygen-sidebar-top {
+	color: white;
+	font-size: 14px;
+	display: flex;
+	flex-direction: column;
+}
+
+.oxygen-sidebar-control-panel {
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	flex-basis: 0px;
+}
+
+.oxygen-sidebar-currently-editing {
+	padding: 12px 12px;
+}
+
+.oxygen-sidebar-top-style-set-active .oxygen-sidebar-currently-editing {
+	padding-top: 0;
+}
+
+.oxygen-sidebar-currently-editing .oxygen-input,
+.oxygen-sidebar-currently-editing .oxygen-select-box,
+.oxygen-sidebar-currently-editing .oxygen-select-box-options {
+	background-color: #3A444B; 
+	color: #fff;
+}
+
+.oxygen-select-box-option.global-conditions-value-item {
+	padding: 0;
+}
+
+.oxygen-select-box-option.global-conditions-value-item > span {
+	display: block;
+	padding: 6px 8px;
+	width: 100%;
+}
+
+.oxygen-sidebar-tabs {
+	margin-top: auto;
+	height: 43px;
+	display: flex;
+}
+
+.oxygen-sidebar-tabs-tab {
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgb(59, 67, 74);
+	cursor: pointer;
+}
+
+.oxygen-sidebar-tabs-tab-active {
+	background-color: #262E35;
+	font-weight: 600;
+}
+
+.oxygen-back-to-selector-detector {
+	width: 31px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #ffffff;
+	border-radius: 2px;
+	opacity: .2;
+}
+.oxygen-back-to-selector-detector img {
+	width: 17px;
+}
+.oxygen-selector-detector-mode .oxygen-back-to-selector-detector {
+	opacity: 1;
+}
+
+/* advanced tab breadcrumb */
+.oxygen-sidebar-breadcrumb {
+	background-color: #262E35;	
+	padding: 10px 20px;
+	display: flex;
+	align-items: center;
+	line-height: 0.6em; /* hacky fix */
+	font-size: 14px;
+	color: #fff;
+}
+.oxygen-sidebar-breadcrumb.oxygen-sidebar-breadcrumb-fill > div {
+	flex: 1 1 auto;
+	margin: auto;
+}
+
+.oxygen-sidebar-breadcrumb.oxygen-sidebar-breadcrumb-fill > div.oxygen-sidebar-breadcrumb-icon {
+	margin-right: 11px;
+}
+
+.oxygen-sidebar-breadcrumb-icon {
+	margin-right: 11px;
+	cursor: pointer;
+}
+
+.oxygen-sidebar-breadcrumb-all-styles {
+	margin-right: 11px;
+	cursor: pointer;
+}
+
+.oxygen-sidebar-breadcrumb-separator {
+	margin-right: 11px;
+	opacity: 0.4;
+}
+
+.oxygen-sidebar-breadcrumb-current {
+	opacity: 0.4;
+	display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.oxygen-sidebar-breadcrumb-current img:last-child {
+	margin-left: auto;
+	cursor: pointer;
+}
+
+.oxygen-sidebar-subtub-breadcrumb {
+	margin: -16px -16px 16px;
+	font-size: 14px;
+}
+
+.oxygen-sidebar-breadcrumb#oxygen-stylesheet-folder-dropdown {
+	padding-top: 40px;
+}
+
+.oxygen-sidebar-breadcrumb#oxygen-stylesheet-folder-dropdown > div.oxygen-control-row {
+	flex: 0 1 100%
+}
+
+/* top of the sidebar */
+
+.oxygen-active-element {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 16px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+.oxygen-active-element-name {
+	height: 36px;
+	line-height: 16px;
+	font-size: 16px;
+	font-weight: 600;
+	flex: 1;
+	margin-right: 12px;
+}
+.oxygen-active-element-name div {
+	width: 100%;
+	max-width: 100%;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+}
+
+
+.oxygen-active-element-icons img,
+.oxygen-active-element-icons .oxy-condition-menu-container {
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.oxygen-active-element-icons .oxy-condition-menu-container {
+	display: inline;
+}
+
+.oxygen-active-element-icons img:last-child {
+	margin-right: 0px;
+}
+
+
+/* active element breadcrumb */
+.oxygen-active-element-breadcrumb {
+	font-size: 12px;
+	color: rgba(255,255,255,0.6);
+	margin-bottom: 6px;
+}
+
+.oxygen-active-element-breadcrumb span {
+	color: rgba(255,255,255,0.95);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.oxygen-active-element-breadcrumb span.oxygen-active-element-breadcrumb-active {
+	color: rgba(255,255,255,0.75);
+	cursor: default;
+}
+
+.oxygen-active-element-breadcrumb span.oxygen-active-element-breadcrumb-arrow {
+	color: rgba(255,255,255,0.6);
+}
+
+
+/* media query and currently active selector boxes */
+
+.oxygen-media-query-and-selector-wrapper {
+	display: flex;
+	flex-direction: row;
+}
+
+.oxygen-active-selector-box {
+	display: flex;
+	border-radius: 4px;
+	background-color: #3A444B;
+	box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.12);
+	height: 31px;
+	flex: 1;
+	align-items: center;
+}
+
+.oxygen-media-query-box-wrapper {
+	position: relative;
+}
+
+.oxygen-media-query-box {
+	display: flex;
+	border-radius: 4px;
+	background-color: #3A444B;
+	box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.12);
+	height: 31px;
+	width: 50px;
+	margin-right: 5px;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 6px;
+	cursor: pointer;
+}
+
+.oxygen-media-query-box img + img {
+	opacity: .5;
+}
+
+
+.oxygen-active-selector-box input {
+	background: transparent;
+	border: none;
+	font-size: 12px;
+	color: #fff;
+	padding-left: 8px;
+	padding-right: 4px;
+	width: 100%;
+	height: 100%;
+	flex: 1;
+	font-family: monospace;
+	letter-spacing: -1px;
+	overflow: hidden;
+}
+
+.oxygen-active-selector-box-id, .oxygen-active-selector-box-class {
+	color: #fff;
+	font-size: 11px;
+	line-height: 11px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-self: stretch;
+	border-radius: 4px;
+	background-color: #26A0F5;
+	align-self: center;
+    width: 31px;
+    margin: 0px 6px;
+	margin-right: 2px;
+    height: 19px;
+	flex-shrink: 0;
+}
+
+.oxygen-classes-dropdown .oxygen-active-selector-box-id, .oxygen-classes-dropdown .oxygen-active-selector-box-class {
+	margin-right: 6px;
+}
+
+
+.oxygen-active-selector-box-id {
+	background-color: #26A0F5;
+	cursor: pointer;
+}
+
+.oxygen-active-selector-box-class {
+	background-color: #009688;
+	cursor: pointer;
+}
+.oxygen-active-selector-box-classname {
+	 max-width: 140px;
+	 overflow: hidden;
+	 text-overflow: ellipsis;
+}
+
+.oxygen-active-selector-box-state {
+	background-color: #556C7E;
+	border-radius: 3px;
+	padding-left: 6px;
+	padding-right: 6px;
+	color: #fff;
+	height: 21px;
+	margin-right: 6px;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 50px;
+	cursor: pointer;
+}
+
+.oxygen-active-selector-box > img {
+	margin-right: 6px;
+}
+
+.oxygen-active-selector-box-wrapper {
+	position: relative;
+	display: flex;
+    flex: 1;
+}
+
+/* dropdowns */
+
+.oxygen-copy-to-dropdown,
+.oxygen-media-query-dropdown,
+.oxygen-states-dropdown,
+.oxygen-classes-dropdown {
+	display: none;
+	border-radius: 4px;
+	background-color: #3A444B;
+	position: absolute;
+	top: 35px;
+	right: 0;
+	padding: 0;
+	margin: 0;
+	z-index: 1000;
+	list-style-type: none;
+	width: 276px;
+	overflow: hidden;	
+	box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.23);
+}
+
+.oxygen-media-query-dropdown {
+	right: auto;
+	left 0;	
+}
+
+.oxygen-copy-to {
+	position: relative;
+}
+.oxygen-copy-to-dropdown {
+	color: white;
+	font-size: 14px;
+	bottom: 34px;
+	left: 0;
+	top: auto;
+	right: auto;
+}
+
+.oxygen-copy-to-dropdown li,
+.oxygen-media-query-dropdown li,
+.oxygen-states-dropdown li,
+.oxygen-classes-dropdown li {
+	padding: 6px 8px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.oxygen-copy-to-dropdown li:hover,
+.oxygen-media-query-dropdown li:hover,
+.oxygen-states-dropdown li:hover,
+.oxygen-classes-dropdown li:hover {
+	background-color: #455c6b;
+} 
+
+.oxygen-classes-dropdown li.oxygen-classes-dropdown-heading {
+    cursor: initial;
+	background-color: initial;
+    padding: 10px 14px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+.oxygen-classes-dropdown li.oxygen-classes-dropdown-suggestions {
+    padding: 0;
+	background-color: initial;
+}
+.oxygen-classes-dropdown li ul.oxygen-classes-suggestions {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+    
+.oxygen-active-select .oxygen-media-query-dropdown,
+.oxygen-active-copy-to-select.oxygen-copy-to-dropdown,
+.oxygen-active-states-select .oxygen-states-dropdown, 
+.oxygen-active-classes-select .oxygen-classes-dropdown {
+	display: block;
+}
+.oxygen-active-classes-select .oxygen-classes-dropdown {
+    padding-bottom: 8px;
+}
+
+.oxygen-classes-dropdown-add-class,
+.oxygen-states-dropdown-add-state,
+.oxygen-add-style-set {
+	background-color: #556C7E;
+    border-radius: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #fff;
+	height: 31px;
+    margin-right: 6px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+	flex-shrink: 0;
+	flex-grow: 1;
+}
+
+.oxygen-classes-dropdown-add-class {
+	margin-left: 6px;
+	margin-right: 0px;
+}
+
+.oxygen-states-dropdown li img, 
+.oxygen-classes-dropdown li img,
+.oxygen-style-set-dropdown div img,
+.oxygen-presets-dropdown div img {
+	margin-left: auto;
+}
+
+.oxygen-classes-dropdown li img {
+	opacity: .7;
+	padding: 4px; 
+	width: 22px;
+}
+.oxygen-classes-dropdown li img:hover {
+	opacity: 1;
+}
+
+.oxygen-presets-dropdown .oxygen-select-box-options {
+	max-height: 250px;
+}
+
+.oxygen-states-dropdown li:not(.oxy-styles-present) img {
+	display: none;
+}
+
+.oxygen-media-query-dropdown li span + img {
+	margin-left: auto;
+}
+
+.oxygen-media-query-dropdown li > img:first-child {
+	padding-right: 5px;
+}
+
+.oxygen-media-query-dropdown .oxygen-current-media-query {
+	font-weight: bold;
+}
+
+.oxygen-custom-selector-highlight {
+	display: flex;
+	margin-left: 5px;
+}
+
+.oxygen-custom-selector-highlight img {
+	cursor: pointer;
+}
+
+/* control panel and controls */
+.oxygen-sidebar-control-panel .custom-attributes,
+.oxygen-sidebar-flex-panel {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.oxygen-sidebar-control-panel {
+	padding: 20px;
+	background-color: #3B444C;
+}
+
+.oxygen-sidebar-control-panel-basic-styles {
+	background-color: #262E35;
+}
+
+.oxygen-basic-styles-subtub {
+	background-color: #3B444C;
+}
+
+.oxygen-sidebar-control-panel.oxygen-sidebar-advanced-home {
+	background-color: #262E35;
+}
+
+
+.oxygen-control-row {
+	display: flex;
+	flex-wrap: wrap;
+	flex-shrink: 0;
+	justify-content: space-between;
+	margin-bottom: 12px;
+	margin-right: -5px;
+}
+
+.oxygen-control-separator {
+	height: 1px;
+	background: rgba(255,255,255,0.1);
+	margin-bottom: 20px;
+}
+
+.oxygen-control-row-inset {
+	background-color: rgba(255,255,255,0.1);
+	margin-right: 0px;
+	padding-left: 10px;
+	padding-right: 5px;
+	padding-top: 8px;
+	padding-bottom: 3px;
+	border-radius: 4px;
+	justify-content: center;
+}
+
+.oxygen-control-rows-multiple-inset {
+	background-color: rgba(255,255,255,0.1);
+	margin-right: 0px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 20px;
+	padding-bottom: 3px;
+	border-radius: 4px;
+}
+
+
+.oxygen-control-row-inset.oxygen-control-row-inset-hanging {
+	position: relative;
+	margin-top: -6px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	z-index: 10;
+}
+
+.oxygen-control-row-inset.oxygen-control-row-inset-hanging:before {
+	width: 16px;
+	height: 16px;
+	transform: rotate(45deg);
+	content: "";
+	background-color: #4f575e;
+	position: absolute;
+	top: -8px;
+	left: calc(50% - 8px);
+}
+
+
+
+
+.oxygen-inset-controls {
+	background-color: rgba(0,0,0,0.2);
+	margin-right: -20px;
+	margin-left: -20px;
+	padding: 20px;
+	padding-bottom: 8px;
+	margin-bottom: 20px;
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+}
+
+.oxygen-inset-controls-light {
+	background-color: rgba(255,255,255,0.1);	
+	box-shadow: 0px 0px 7px rgba(0,0,0,0.4);
+}
+
+.oxygen-double-inset-controls {
+	background-color: rgba(255,255,255,0.05);
+	margin-right: 0px;
+	padding: 17px;
+	padding-bottom: 1px;
+	text-align: center;
+	border-radius: 4px;
+	justify-content: center;
+	margin-bottom: 20px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.25);
+}
+
+
+
+.oxygen-inset-controls > h3 {
+	color: #fff;
+	font-weight: 600;
+	font-size: 16px;
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+.oxygen-element-presets-controls {
+	margin-top: 10px;
+}
+.oxygen-element-presets-controls .oxygen-control-wrapper{
+	flex-basis: 0px;
+}
+
+.oxygen-control-wrapper {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	margin-right: 5px;
+	margin-bottom: 8px;
+	flex-basis: 70px;
+}
+
+.oxygen-control-wrapper-center {
+	text-align: center;
+}
+
+.oxygen-control-wrapper-5050-wide {
+	flex-basis: 152px;
+}
+
+.oxygen-control-label {
+	font-size: 14px;
+	color: white;
+	margin-bottom: 6px;
+}
+
+.oxygen-control-label > a {
+	color: white;
+}
+
+ul.oxygen-control-label {
+	padding-inline-start: 20px;
+}
+
+ul.oxygen-control-label li {
+	margin-bottom: 5px;
+}
+
+ul.oxygen-control-label li a {
+	color: white;
+}
+
+.oxygen-control-label .code {
+	font-family: "Courier New";
+	background-color: black;
+}
+
+#oxyCloseModalDetails {
+	opacity: 0;
+	width: 100%;
+}
+
+.oxygen-control {
+
+}
+
+.oxygen-control-description {
+	color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    text-decoration: none;
+    margin-bottom: 6px;
+}
+
+
+
+/* advanced tab home */
+
+.oxygen-sidebar-advanced-subtab {
+	border-radius: 4px;
+	background-color: #363d45;
+	font-size: 15px;
+	line-height: 15px;
+	padding: 11px 15px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	margin-bottom: 5px;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.oxygen-sidebar-advanced-subtab span {
+	display: flex;
+	align-items: center;
+}
+
+.oxygen-sidebar-subtab-dark {
+	background-color: #262d35;
+}
+
+.oxygen-sidebar-advanced-subtab img:first-child {
+	margin-right: 27px;
+}
+
+.oxygen-sidebar-advanced-subtab img:last-child {
+	margin-left: auto;
+}
+
+ .oxygen-sidebar-advanced-subtab-subtab {
+	background-color: #262d35; 	
+}
+
+
+	
+
+
+/* measure box */
+.oxygen-measure-box {
+	display: flex;
+	border-radius: 4px;
+	background-color: #222B34;
+	height: 31px;
+	justify-content: center;
+}
+
+.oxygen-measure-box input {
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	color: #fff;
+	padding-left: 9px;
+	padding-right: 0px;
+	width: 0;
+	flex: 1 1 auto;
+}
+
+.oxygen-measure-box .oxygen-measure-box-unit-selector {
+	font-size: 14px;
+	padding-left: 9px;
+	padding-right: 9px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	color: #43A3FC;
+	position: relative;
+	cursor: pointer;
+}
+.oxygen-measure-box.oxygen-measure-box-option-opacity .oxygen-measure-box-unit-selector {
+    display: none;
+}
+
+.oxygen-measure-box .oxygen-measure-box-selected-unit {
+	position: relative;
+	top: -2px;
+	opacity: 0.5;
+}
+.oxygen-measure-box .oxygen-measure-box-unit-none .oxygen-measure-box-selected-unit {
+    opacity: 1;
+}
+
+.oxygen-measure-box .oxygen-measure-box-units {
+	display: none;
+	position: absolute;
+	width: 50px;
+	border-radius: 4px;
+	overflow: hidden;
+	background-color: #2c3947;
+	top: -26px;
+    right: -16px;
+    z-index: 2000;
+}
+.oxygen-measure-box.oxygen-measure-box-unit-selector-active .oxygen-measure-box-units {
+	display: block;
+}
+
+.oxygen-measure-box .oxygen-measure-box-units div {
+	padding: 2px 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.oxygen-measure-box .oxygen-measure-box-units div:hover {
+	background-color: #182028;
+}
+
+.oxygen-measure-box .oxygen-measure-box-unit-active {
+	font-weight: bolder;
+}
+.oxygen-measure-box.oxygen-measure-box-unit-auto > input {
+	display: none;
+}
+
+.oxygen-measure-box-options {
+	display: none;
+	position: absolute;
+    width: 90%;
+    height: 90%;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #2c3947;
+    top: 5%;
+    left: 5%;
+    z-index: 2000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #fff;
+}
+
+.oxygen-measure-box-active .oxygen-measure-box-options {
+	display: flex;
+}
+
+.oxygen-measure-box-options input[type="radio"] {
+	display: none;
+}
+
+.oxygen-measure-box-options label {
+	padding: 4px 0;
+	cursor: pointer;
+}
+
+.oxygen-measure-box-options input:checked + span {
+	font-weight: bold;
+}
+
+/* measure box with slider */
+
+.oxygen-slider-measure-box {
+	display: flex;
+	align-items: center;
+}
+
+.oxygen-slider-measure-box .oxygen-measure-box {
+	flex-basis: 100px;
+}
+
+.oxygen-measure-box-slider {
+	/*background-color: rgba(255,255,255,0.2);
+	height: 3px;*/
+	position: relative;
+	top: -4px;
+	margin-left: 10px;
+	flex-basis: 200px;
+}
+
+.oxygen-slider-measure-box.oxygen-measure-box-unit-none .oxygen-measure-box {
+    flex-basis: unset;
+    width: 100%;
+}
+.oxygen-slider-measure-box.oxygen-measure-box-unit-none .oxygen-measure-box-slider {
+    display: none;
+}
+
+/*.oxygen-measure-box-slider:before {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 40%;
+	background-color: #43A3FC;
+	content: "";
+}
+
+.oxygen-measure-box-slider:after {
+	position: absolute;
+	top: -7px;
+	left: calc(40% - 8px);
+	display: block;
+	border-radius: 50%;
+	height: 17px;
+	width: 17px;
+	content: "";
+	background-color: rgba(255,255,255,0.2);
+	border: 4px solid #FFFFFF;
+	background-color: #43A3FC;
+}*/
+
+.oxygen-measure-box-slider input[type=range] {
+	-webkit-appearance: none;
+	width: 100%;
+}
+.oxygen-measure-box-slider input[type=range]:focus {
+	outline: none;
+}
+.oxygen-measure-box-slider input[type=range]::-webkit-slider-runnable-track {
+	background-color: rgb(80, 87, 92);
+	height: 3px;
+	position: relative;
+	flex-basis: 200px;
+	cursor: pointer;
+	animate: 0.2s;
+}
+.oxygen-measure-box-slider input[type=range]::-webkit-slider-thumb {
+	border-radius: 50%;
+	height: 17px;
+	width: 17px;
+	content: "";
+	background-color: rgba(255,255,255,0.2);
+	border: 4px solid #FFFFFF;
+	background-color: #43A3FC;
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -6.6px;
+}
+.oxygen-measure-box-slider input[type=range]::-moz-range-track {
+	background-color: rgb(80, 87, 92);
+	height: 3px;
+	position: relative;
+	flex-basis: 200px;
+	cursor: pointer;
+	animate: 0.2s;
+}
+.oxygen-measure-box-slider input[type=range]::-moz-range-thumb {
+	border-radius: 50%;
+	height: 17px;
+	width: 17px;
+	content: "";
+	background-color: rgba(255,255,255,0.2);
+	border: 4px solid #FFFFFF;
+	background-color: #43A3FC;
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -6.6px;
+}
+.oxygen-measure-box-slider input[type=range]::-ms-track {
+	background-color: rgb(80, 87, 92);
+	height: 3px;
+	position: relative;
+	flex-basis: 200px;
+	cursor: pointer;
+	animate: 0.2s;
+}
+.oxygen-measure-box-slider input[type=range]::-ms-thumb {
+	border-radius: 50%;
+	height: 17px;
+	width: 17px;
+	content: "";
+	background-color: rgba(255,255,255,0.2);
+	border: 4px solid #FFFFFF;
+	background-color: #43A3FC;
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -6.6px;
+}
+
+
+
+/* icon grid */
+
+.oxygen-icon-chooser {
+	background-color: rgba(255,255,255,0.1);
+	flex-direction: row;
+	padding: 10px;
+	border-radius: 4px;
+}
+
+.oxygen-icon-grid {
+	margin-top: 12px;
+	display: flex;
+	height: 200px;
+	overflow: auto;
+	width: 100%;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.oxygen-icon-grid .oxygen-icon-grid-icon {
+	width: 42px;
+	height: 42px;
+	border-radius: 4px;
+	background-color: rgba(0,0,0,0.2);
+	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.oxygen-icon-grid .oxygen-icon-grid-icon-active {
+	background-color: #24577E;
+}
+
+.oxygen-icon-grid .oxygen-icon-grid-icon svg {
+	display: inline-block;
+    width: 80%;
+    height: 80%;
+    fill: white;
+    margin: 10% 0 0 10%;
+}
+
+
+/* color picker */
+.oxygen-color-picker {
+	display: flex;
+	border-radius: 4px;
+	background-color: #222B34;
+	height: 31px;
+	align-items: center;
+	position: relative;
+}
+
+.oxygen-color-picker input {
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	color: #fff;
+	padding-left: 9px;
+	padding-right: 9px;
+	width: calc(100% - 21px - 5px);
+	height: 100%;
+	position: relative;
+}
+
+.oxygen-color-picker .oxygen-color-picker-color {
+	width: 21px;
+	height: 21px;
+	margin-left: 5px;
+	border-radius: 50%;
+}
+
+
+
+/* basic text input */
+.oxygen-input {
+	display: flex;
+	border-radius: 4px;
+	background-color: #222B34;
+	height: 31px;
+	align-items: center;
+}
+
+.oxygen-input input {
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	color: #fff;
+	padding-left: 9px;
+	padding-right: 9px;
+	width: 100%;
+	height: 100%;
+	flex: 1 1 auto;
+}
+
+
+/* file input */
+.oxygen-file-input,
+.oxygen-input-with-button {
+	display: flex;
+	border-radius: 4px;
+	background-color: #222B34;
+	height: 31px;
+	align-items: center;
+}
+
+.oxygen-input-with-button.oxygen-new-easy-posts-preset {
+	background-color: #3f464e;
+}
+
+.oxygen-file-input input,
+.oxygen-input-with-button input {
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	color: #fff;
+	padding-left: 9px;
+	padding-right: 9px;
+	height: 100%;
+	width: 0;
+	flex: 1 1 auto;
+}
+
+.oxygen-file-input .oxygen-file-input-browse,
+.oxygen-file-input .oxygen-selector-browse,
+.oxygen-file-input .oxygen-set-link,
+.oxygen-input-with-button .oxygen-input-button {
+	background-color: rgba(255,255,255,0.2);
+	border-radius: 3px;
+	padding-left: 6px;
+	padding-right: 6px;
+	color: #fff;
+	height: 21px;
+	margin-right: 6px;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+/* select */
+.oxygen-select-box-wrapper {
+	position: relative;
+}
+
+.oxygen-select-box {
+	display: flex;
+	border-radius: 4px;
+	background-color: #222B34;
+	height: 31px;
+	align-items: center;
+	cursor: pointer;
+}
+
+.oxygen-select-box-current {
+	font-size: 14px;
+	color: rgba(255,255,255,1);
+	padding-left: 9px;
+	padding-right: 9px;
+	flex: 1;
+	white-space: nowrap;
+	display: flex;
+	text-align: left;
+	overflow: hidden;
+}
+
+.oxygen-select-box-dropdown {
+	width: 21px;
+	height: 21px;
+	margin-right: 5px;
+	-webkit-mask-image: url('../oxygen-icons/not-real-arrow-dropdown.svg');
+	background-color: rgba(255,255,255,0.3);
+}
+
+.oxygen-select-box-options {
+	display: none;
+	width: 100%;
+    border-radius: 4px;
+    background-color: #222B34;
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    z-index: 2000;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 350px;
+	box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.23);
+	margin-bottom: 30px;
+}
+
+.oxygen-active-select .oxygen-select-box-options {
+	display: block;
+}
+
+.oxygen-select-box-option {
+	display: flex;
+	padding: 6px 8px;
+	cursor: pointer;
+}
+
+.oxygen-select-box-option.oxygen-nothing-found-option {
+	cursor: unset;
+	color: rgba(255,255,255,0.5);
+}
+.oxygen-select-box-option.oxygen-nothing-found-option:hover {
+	background-color: transparent;
+}
+
+.oxygen-select-box-option-active {
+	font-weight: bolder;
+}
+
+.oxygen-select-box-option:hover {
+	background-color: #455c6b; 
+}
+
+
+.oxygen-classes-dropdown-input, .oxygen-select-box-option input {
+    font-size: 14px;
+    color: #fff !important;
+    padding-left: 9px;
+    padding-right: 9px;
+    border: none;
+    background: rgba(0,0,0,0.2);
+    height: 31px;
+    border-radius: 3px;
+	width: 70%;
+}
+
+.oxygen-select-box-option input {
+	width: 100%;
+	color: #000;
+}
+
+
+/* button list */
+.oxygen-button-list {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -5px;
+	margin-bottom: -5px;
+}
+
+.oxygen-button-list .oxygen-button-list-button {
+	height: 31px;
+	border-radius: 4px;
+	background-color: #222B34;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: white;
+	font-size: 12px;
+	flex-grow: 1;
+	box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.12);	
+	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.oxygen-button-list .oxygen-button-list-button input {
+	display: none;
+}
+
+.oxygen-button-list .oxygen-button-list-button .oxygen-button-list-button-default {
+	height: 31px;
+	border-radius: 4px;
+	background-color: #222B34;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-left: 9px;
+	padding-right: 9px;
+	color: white;
+	font-size: 12px;
+	flex-grow: 1;
+	box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.12);	
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+
+
+.oxygen-button-list .oxygen-button-list-button-default {
+	outline: 1px dotted rgba(255,255,255,0.2);
+	outline-offset: -5px;
+}
+
+.oxygen-button-list .oxygen-button-list-button.oxygen-button-list-button-active:not(.oxygen-button-list-button-default) {
+	background-color: #24577E;
+}
+
+
+
+
+/* labeled icon button list */
+.oxygen-icon-button-list {
+	display: flex;
+	flex-direction: row;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: -5px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.oxygen-icon-button-list.modal-position {
+	margin-bottom: 0px;
+}
+
+.oxygen-icon-button-list input[type="radio"]{
+	display: none;
+}
+
+.oxygen-icon-button-list-option {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	align-items: center;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.oxygen-icon-button-list-equal .oxygen-icon-button-list-option {
+	flex: 1;
+	width: 100%;
+}
+
+
+.oxygen-icon-button-list-option-icon-wrapper {
+	border-radius: 4px;
+	background-color: #222B34;
+	box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.12);	
+	padding: 6px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.oxygen-icon-button-list-big .oxygen-icon-button-list-option-icon-wrapper {
+	padding: 14px;
+}
+
+
+.oxygen-icon-button-list-big .oxygen-icon-button-list-option-icon-wrapper img {
+	/* we need SVGs with viewbox defined so they will scale up. so we need new SVGs */
+}
+
+
+.oxygen-icon-button-list-option-label {
+	margin-top: 6px;
+	color: rgba(255,255,255,0.6);
+	font-size: 12px;
+	text-align: center;
+}
+
+.oxygen-icon-button-list-option-active:not(.oxygen-icon-button-list-button-default) .oxygen-icon-button-list-option-label {
+	color: #fff;
+	font-weight: 600;
+}
+
+.oxygen-icon-button-list-option-active:not(.oxygen-icon-button-list-button-default) .oxygen-icon-button-list-option-icon-wrapper {
+	background-color: #24577E;
+}	
+
+.oxygen-icon-button-list-option img:first-child {
+	display: block;
+}
+
+.oxygen-icon-button-list-option img:last-child {
+	display: none;
+}
+
+.oxygen-icon-button-list-option-active:not(.oxygen-icon-button-list-button-default) img:first-child {
+	display: none;
+}
+
+.oxygen-icon-button-list-option-active:not(.oxygen-icon-button-list-button-default) img:last-child {
+	display: block;
+}
+
+.oxygen-control-text-align .oxygen-icon-button-list .oxygen-icon-button-list-option-icon-wrapper img {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+.oxygen-icon-button-list-button-default .oxygen-icon-button-list-option-icon-wrapper{
+	outline: 1px dotted rgba(255,255,255,0.2);
+	outline-offset: -5px;
+}
+
+
+/* radio */
+
+.oxygen-radio {
+}
+
+.oxygen-radio-option:before {
+	display: block;
+	border-radius: 50%;
+	height: 18px;
+	width: 18px;
+	margin-right: 6px;
+	content: "";
+	background-color: rgba(255,255,255,0.2);
+}
+
+.oxygen-radio-option {
+	display: flex;
+	color: rgba(255,255,255,0.7);
+	font-size: 12px;
+	line-height: 12px;
+	align-items: center;
+	margin-top: 6px;
+	margin-bottom: 12px;
+}
+
+.oxygen-radio-option-active:before {
+	border: 5px solid #FFFFFF;
+	background-color: #43A3FC;
+	box-shadow: 0 0 4px 0 #43A3FC;
+}
+
+
+/* checkbox */
+
+
+.oxygen-checkbox {
+}
+
+.oxygen-checkbox-checkbox:before {
+	display: block;
+	border-radius: 2px;
+	height: 18px;
+	width: 18px;
+	margin-right: 6px;
+	content: "";
+	background-color: rgba(255,255,255,0.2);
+}
+
+.oxygen-checkbox > input {
+	display: none;
+}
+
+.oxygen-checkbox-checkbox {
+	display: flex;
+	color: rgba(255,255,255,0.7);
+	font-size: 12px;
+	line-height: 12px;
+	align-items: center;
+	margin-top: 6px;
+	margin-bottom: 12px;
+	cursor: pointer;
+}
+
+.oxygen-checkbox-checkbox-active:before {
+	border: 5px solid #FFFFFF;
+	background-color: #43A3FC;
+	box-shadow: 0 0 4px 0 #43A3FC;
+}
+
+
+
+/* text area */
+
+.oxygen-textarea {
+	display: flex;
+	border-radius: 4px;
+	background-color: #222B34;
+}
+
+.oxygen-textarea textarea {
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	color: #fff;
+	padding: 9px;
+	padding: 9px;
+	width: 100%;
+	height: 93px;
+	flex: 1;
+	font-family: monospace;
+	font-size: 12px;
+}
+
+
+
+
+
+/* four sides measure box */
+
+.oxygen-four-sides-measure-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.oxygen-four-sides-measure-box-left-right {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-around;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+
+.oxygen-four-sides-measure-box .oxygen-measure-box {
+	width: 55px;
+	height: 27px;
+}
+
+.oxygen-four-sides-measure-box .oxygen-measure-box input {
+	font-size: 12px;
+}
+
+.oxygen-four-sides-measure-box .oxygen-measure-box .oxygen-measure-box-unit-selector {
+	font-size: 12px;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+}
+
+/* add labels to four sides measure box */
+
+.oxygen-four-sides-measure-box.oxygen-four-sides-measure-box-labels span {
+	color: rgba(255,255,255,0.6);
+	font-size: 13px;
+	margin: 6px;
+}
+
+.oxygen-four-sides-measure-box.oxygen-four-sides-measure-box-labels > div:not(.oxygen-four-sides-measure-box-left-right) {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.oxygen-four-sides-measure-box.oxygen-four-sides-measure-box-labels .oxygen-four-sides-measure-box-left-right > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.oxygen-apply-all-trigger {
+	visibility: hidden;
+	color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.oxygen-measure-box-focused .oxygen-apply-all-trigger {
+	visibility: visible;
+}
+
+
+
+/* adjust control colors in the basic styles tab */
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-select-box,
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-select-box-options {
+	background-color: #3f464e;
+}
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-color-picker {
+	background-color: #3f464e;
+}
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-measure-box {
+	background-color: #3f464e;
+}
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-file-input {
+	background-color: #3f464e;
+}
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-input {
+	background-color: #3f464e;
+}
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-icon-button-list-option-icon-wrapper,
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-button-list-button {
+	background-color: #3c4249;
+}
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-icon-button-list-option-active:not(.oxygen-icon-button-list-button-default) .oxygen-icon-button-list-option-icon-wrapper {
+	background-color: #2f577b;
+}
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-control-rows-multiple-inset {
+	background-color: rgb(52, 59, 66);
+}
+
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-control-rows-multiple-inset .oxygen-icon-button-list-option-icon-wrapper {
+	box-shadow: none;
+	background-color: #454d55;
+}
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-control-rows-multiple-inset .oxygen-icon-button-list-option-active:not(.oxygen-icon-button-list-button-default) .oxygen-icon-button-list-option-icon-wrapper {
+	background-color: #2f577b;
+}
+
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .wp-picker-container .iris-picker,
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .alpha-color-picker-container,
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-global-colors-wrap {
+	background-color: #3f464e;
+}
+
+
+
+
+
+/* specific controls */
+/* text decoration and font style controls */
+
+.oxygen-text-decoration-underline, .oxygen-text-decoration-overline, .oxygen-text-decoration-linethrough, .oxygen-font-style-italic {
+	font-family: serif;
+	font-size: 16px !important;
+}
+
+.oxygen-text-decoration-underline {
+	text-decoration: underline;
+}
+
+.oxygen-text-decoration-overline {
+	text-decoration: overline;
+}
+
+.oxygen-text-decoration-linethrough {
+	text-decoration: line-through;
+}
+
+ .oxygen-font-style-italic {
+ 	font-style: italic;
+ }
+
+
+
+/* getting controls correctly sized and spaced from each other */
+/* add a class to the control row or wrapper... then change the flex value and margin. increase the flex value to get the control to take up more space. */
+
+/* this makes the Text Decoration control wider. The font style control 
+(or whatever else is in the same control row) will automatically shrink 
+to accomodate it. flexbox is great */
+.oxygen-control-row-text-decoration-font-style .oxygen-control-wrapper:first-child {
+	flex: 6;
+	margin-right: 20px;
+}
+
+
+
+/* custom styles for specific controls */
+#oxygen-flexbox-reverse-order-checkbox {
+	margin-left: 15px;
+	margin-right: 10px;
+}
+
+
+#oxygen-typography-font-family {
+	min-width: 160px;
+}
+
+#oxygen-typography-font-family .oxygen-select-box-options {
+	min-width: 242px;
+}
+
+#oxygen-typography-font-color {
+	flex-basis: 180px;
+}
+
+#oxygen-background-position-control-label {
+	flex-basis: 100%;
+}
+
+#flex-child-controls {
+	margin-top: 40px;
+	margin-bottom: -20px;
+}
+
+#oxygen-control-layout-display .oxygen-button-list .oxygen-button-list-button {
+	padding-left: 9px;
+	padding-right: 9px;
+}
+
+
+#oxygen-control-layout-justify-content .oxygen-button-list .oxygen-button-list-button {
+	padding-left: 9px;
+	padding-right: 9px;
+}
+
+#oxygen-control-layout-align-content .oxygen-button-list .oxygen-button-list-button {
+	padding-left: 9px;
+	padding-right: 9px;
+}
+
+
+#oxygen-control-borders-unset-button {
+	color: rgba(255,255,255,0.5);
+	font-size: 12px;
+}
+
+.oxygen-control-label-bottom,
+#oxygen-control-borders-radius-individual {
+	color: rgba(255,255,255,0.5);
+	font-size: 12px;
+	margin-top: 4px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.oxygen-control-label-highlight {
+	text-shadow: 0px 0px 4px #1483ea;
+	color: #dadada;
+}
+
+.oxygen-basic-styles-flex-alignment-padded {
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.oxygen-basic-styles-flex-alignment-wrapper .oxygen-icon-button-list-option-icon-wrapper {
+	height: 38px;
+}
+
+
+/* columns icon button list */
+
+.oxygen-icon-button-list.oxygen-icon-button-list-column-chooser {
+	margin-top: 12px;
+}
+
+.oxygen-icon-button-list.oxygen-icon-button-list-column-chooser .oxygen-icon-button-list-option {
+	width: calc(50% - 10px);
+	margin-bottom: 20px;
+}
+					
+.oxygen-icon-button-list.oxygen-icon-button-list-column-chooser .oxygen-icon-button-list-option .oxygen-icon-button-list-option-icon-wrapper {
+	min-height: 60px;
+}
+
+.oxygen-icon-button-list.oxygen-icon-button-list-column-chooser .oxygen-icon-button-list-option .oxygen-icon-button-list-option-label {
+	font-size: 14px;
+}
+
+.oxygen-columns-icon {
+	min-height: 25px;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	margin: auto;
+}
+
+.oxygen-columns-icon div {
+	border: 2px solid rgba(255,255,255,0.25);
+	border-radius: 4px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.oxygen-columns-icon .columns-25 {
+	width: 25%;
+}
+
+.oxygen-columns-icon .columns-50 {
+	width: 50%;
+}
+
+.oxygen-columns-icon .columns-33 {
+	width: 33.333%;
+}
+
+.oxygen-columns-icon .columns-100 {
+	width: 100%;
+}
+
+.oxygen-columns-icon .columns-60 {
+	width: 60%;
+}
+
+.oxygen-columns-icon .columns-40 {
+	width: 40%;
+}
+
+
+/* Viewport scale*/
+
+.oxygen-viewport-scale {
+    display: flex;
+    border-radius: 4px;
+    background-color: #3f464e;
+    height: 31px;
+    align-items: center;
+}
+.oxygen-viewport-scale .oxygen-viewport-scale-value {
+	margin-left: 5px;
+	margin-right: 5px;
+	color: #fff;
+}
+.oxygen-viewport-scale .oxygen-viewport-scale-lock-icon {
+	width: 21px;
+	height: 21px;
+	margin-right: 5px;
+	cursor: pointer;
+	display: flex;
+    justify-content: center;
+}
+.oxygen-viewport-scale .oxygen-viewport-scale-lock-icon img:first-child {
+	display: block;
+	max-width: 100%;
+}
+.oxygen-viewport-scale .oxygen-viewport-scale-lock-icon img:last-child {
+	display: none;
+	max-width: 100%;
+}
+.oxygen-viewport-scale .oxygen-viewport-scale-lock-icon.oxygen-viewport-scale-locked img:first-child {
+	display: none;
+}
+.oxygen-viewport-scale .oxygen-viewport-scale-lock-icon.oxygen-viewport-scale-locked img:last-child {
+	display: block;
+}
+
+
+/* code editor bottom bar */
+.oxygen-sidebar-code-editor-panel {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: -16px;
+}
+
+.oxygen-sidebar-code-editor-wrap {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+    margin-bottom: auto;
+}
+.oxygen-sidebar-code-editor-wrap .CodeMirror {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.oxygen-sidebar-code-editor-wrap .CodeMirror-scroll {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.oxygen-sidebar-code-editor-wrap .CodeMirror-scroll .CodeMirror-gutters {
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.oxygen-control-row-bottom-bar {
+	background-color: #2d353c;
+    padding: 10px 10px;
+    margin: -16px;
+    margin-top: auto;
+}
+
+.oxygen-apply-button, 
+.oxygen-ghost-button,
+.oxygen-gradient-add-color,
+.oxygen-control-row-bottom-bar-code-editor .oxygen-code-editor-apply, 
+.oxygen-code-editor-expand {
+	border: 1px solid #fff;
+	color: #fff;
+	border-radius: 3px;
+	padding: 6px 12px;
+	font-size: 13px;
+	text-decoration: none;
+	opacity: 0.8;
+	width: calc(50% - 5px);
+	text-align: center;
+	max-width: 200px;
+	cursor: pointer;
+}
+
+.oxygen-control-row-bottom-bar-code-editor {
+  margin: 0
+}
+
+.oxygen-code-editor-expand,
+.oxygen-code-editor-apply {
+	display: block;
+    margin-top: 10px;
+}
+
+
+.oxygen-apply-button {
+	width: auto;
+	max-width: unset;
+}
+
+.oxygen-control-row-bottom-bar .oxygen-apply-button {
+	width: 100%;
+}
+
+.oxygen-code-error-container {
+	display: none;
+    background: #e38a8a;
+    color: #3c454c;
+    padding: 4px;
+}
+
+.oxygen-control-grid-cell {
+	background-color: #3f464e;
+	border-radius: 4px;
+	padding: 4px 8px;
+	margin-right: 6px;
+	margin-bottom: 6px;
+	height: calc(100% - 6px);
+}
+.oxygen-control-grid-cell:hover {
+	background-color: #195c8c !important;
+	cursor: pointer;
+}
+
+
+/* Stlyesheets */
+
+.oxygen-style-sheet .oxygen-sidebar-breadcrumb {
+	padding: 20px;
+	margin: -20px;
+	margin-bottom: 0;
+	color: #fff;
+}
+
+.oxygen-style-sheet .oxygen-sidebar-breadcrumb-stylesheets {
+	margin-right: 11px;
+}
+
+.oxygen-style-sheet .oxygen-sidebar-code-editor-wrap {
+	margin: 0 -20px;
+}
+
+.oxygen-sidebar-stylesheet-editor-wrap {
+	height: calc(100vh - 264px)
+}
+
+/* Settings sidebar */
+
+.oxygen-global-settings {
+	position: fixed;
+	top: 58px;
+	right: -300px;
+	bottom: 0;
+	width: 300px;
+	z-index: 99999999999;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	background-color: #3B444C;
+	color: #fff;
+}
+
+.oxygen-global-settings.oxygen-global-settings-all-settings {
+	background-color: #262e35;
+}
+
+.oxygen-settings-content {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	margin: -20px;
+	padding: 20px;
+	overflow: auto;
+}
+
+.oxygen-settings-section-heading {
+	font-size: 18px;
+	font-weight: 600;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	color: white;
+}
+.oxygen-settings-section-heading:first-child {
+	margin-top: 0px;
+}
+
+/* Settings Breadcrumbs */
+.oxygen-settings-breadcrumb {
+	display: flex;
+    align-items: center;
+    margin: -20px;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background: #262e35;
+    font-size: 14px;
+}
+
+.oxygen-settings-breadcrumb img {
+	display: block;
+}
+
+/* Fonts settings */
+.oxygen-control-global-font {
+	display: flex;
+}
+
+.oxygen-control-global-font .oxygen-select-box-wrapper {
+	flex-grow: 1;
+}
+
+.oxygen-control-global-font img {
+	margin-left: 6px;
+	cursor: pointer;
+}
+
+.oxygen-add-global-color,
+.oxygen-add-global-color-set,
+.oxygen-add-global-font {
+	background-color: #2e3840;
+    border-radius: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #fff;
+    height: 31px;
+    margin-right: 6px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    cursor: pointer;
+}
+.oxygen-add-global-color-set{
+	margin: 17px 0 0;
+}
+
+
+/* Widgets */
+
+.oxygen-widget-settings-wrapper {
+	margin: -10px;
+}
+
+.oxygen-widget-settings-bottom {
+	background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px 10px;
+    margin: -16px;
+    margin-top: auto;
+    display: flex;
+    order: 100;
+}
+
+.oxygen-widget-settings-apply-button {
+	border: 1px solid #fff;
+	color: #fff;
+	border-radius: 3px;
+	padding: 6px 12px;
+	font-size: 13px;
+	text-decoration: none;
+	opacity: 0.8;
+	text-align: center;
+	flex-grow: 1;
+	cursor: pointer;
+}
+
+/* templates and reusable parts sidebar */
+
+.oxygen-sidebar-template {
+	padding: 20px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+	height: 100%;
+}
+
+.oxygen-sidebar-template h1 {
+	color: #fff;
+	font-weight: 600;
+	font-size: 18px;
+	margin: 0;
+	margin-top: 2px;
+}
+
+.oxygen-sidebar-template h2 {
+	font-weight: 600;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: rgba(255,255,255,0.5);
+	margin: 0;
+}
+
+.oxygen-sidebar-template .oxygen-reusable-title {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.oxygen-sidebar-template .oxygen-reusable-title img {
+	cursor: pointer;
+}
+
+.oxygen-sidebar-template .oxygen-active-element-breadcrumb {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.oxygen-sidebar-template-button {
+	border: 1px solid #fff;
+	color: #fff;
+	border-radius: 3px;
+	padding: 12px 24px;
+	font-size: 13px;
+	text-decoration: none;
+	opacity: 0.8;
+	text-align: center;
+	width: 100%;
+	margin-top: 20px;
+}
+
+
+.oxygen-sidebar-template-button:hover {
+	opacity: 1;
+}
+
+.oxygen-sidebar-template-button::after {
+	content: "\00bb";
+	margin-left: 8px;
+}
+
+.oxygen-sidebar-template-message {
+	margin-top: 50px;
+	margin-bottom: auto;
+	font-size: 13px;
+	text-align: left;
+	align-self: stretch;
+}
+
+/* Toolbar */
+
+.oxygen-toolbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: stretch;
+	color: #fff;
+}
+
+#oxygen-topbar {
+	height: 58px;
+	background-color: #323B42;
+}
+
+
+
+.oxygen-toolbar-button {
+	cursor: pointer;
+}
+
+.oxygen-toolbar-button img + img {
+	display: none;
+}
+
+.oxygen-toolbar-button span {
+	color: rgba(255,255,255,0.5);
+}
+
+.oxygen-toolbar-button:hover img + img {
+	display: block;
+}
+
+.oxygen-toolbar-button:hover img {
+	display: none;
+}
+
+.oxygen-toolbar-button:hover span {
+	color: rgba(255,255,255,1);
+}
+
+.oxygen-toolbar-button-dropdown {
+	display: none;
+	width: 100%;
+    background-color: #384148;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    position: absolute;
+    top: 28px;
+    left: 0;
+    z-index: 2147483644;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.23);
+}
+.oxygen-active-select .oxygen-toolbar-button-dropdown {
+	display: flex;
+	flex-direction: column;
+}
+.oxygen-toolbar-button-dropdown-option {
+	padding: 6px 8px;
+    cursor: pointer;
+	color: rgba(255, 255, 255, 0.5);
+	text-decoration: none;
+}
+.oxygen-toolbar-button-dropdown-option:hover {
+	color: #fff;
+}
+
+
+.oxygen-add-button, .oxygen-save-button {
+	background-color: #597D9B;
+	padding: 0px 30px;
+	width: 113px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 16px;
+}
+
+.oxygen-add-button {
+	border-right: 1px solid #313A40;
+}
+
+.oxygen-save-button {
+	border-left: 1px solid #313A40;
+}
+
+
+.oxygen-add-button:hover, .oxygen-save-button:hover {
+	background-color: #698DAB;
+}
+
+
+.oxygen-add-button img {
+	height: 26px;
+	margin-right: 5px;
+}
+
+.oxygen-save-button img {
+	height: 26px;
+	margin-right: 9px;
+}
+
+
+.oxygen-add-button span, .oxygen-save-button span {
+	color: #fff;
+}
+
+
+
+
+.oxygen-dom-tree-button {
+
+	margin-left: auto;
+
+	padding: 0px 22px;
+
+	border-left: 1px solid #313A40;
+	background-color: #434D55;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	font-size: 14px;
+}
+
+
+.oxygen-dom-tree-button img {
+	height: 30px;
+	margin-right: 13px;
+}
+
+.oxygen-toolbar-menus {
+
+	border-left: 1px solid #313A40;
+
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	flex-wrap: wrap;
+	width: 120px;
+}
+
+
+.oxygen-manage-menu, .oxygen-back-to-wp-menu {
+	background-color: #434D55;
+	font-size: 13px;
+	padding: 0px 10px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	position: relative;
+}
+
+
+
+.oxygen-manage-menu img, .oxygen-back-to-wp-menu img {
+	height: 16px;
+	margin-right: 6px;
+}
+
+.oxygen-manage-menu img:last-child, .oxygen-back-to-wp-menu img:last-child {
+	margin-left: auto;
+	margin-right: 0;
+    height: auto;
+    opacity: .5;
+}
+
+.oxygen-manage-menu:hover img:last-child, .oxygen-back-to-wp-menu:hover img:last-child {
+	display: block;
+    opacity: 1;
+}
+
+.oxygen-back-to-wp-menu {
+	border-top: 1px solid #313A40;
+}
+
+
+
+
+
+
+
+.oxygen-toolbar-panels {
+	flex-grow: 1;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+}
+
+.oxygen-toolbar-panel {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	align-items: center;
+
+	padding: 0px 15px;
+
+}
+
+.oxygen-formatting-toolbar-panel {
+}
+
+.oxygen-zoom-control {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.oxygen-zoom-control label {
+	color: rgba(255,255,255,0.5);
+	margin-right: 8px;
+	font-size: 13px;
+}
+
+.oxygen-zoom-control .oxygen-zoom-control-zoom-amount {
+	border-radius: 100px;
+	background-color: #222C34;
+	font-size: 14px;
+	width: 53px;
+	height: 26px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+
+.oxygen-zoom-control .oxygen-zoom-icon {
+	border-radius: 100px;
+	background-color: #222C34;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 35px;
+	height: 35px;
+	margin-left: 8px;
+	cursor: pointer;
+}
+
+.oxygen-zoom-control .oxygen-zoom-icon img + img {
+	display: none;
+}
+
+.oxygen-zoom-control .oxygen-zoom-icon-active {
+	background-color: #215680;
+}
+
+.oxygen-zoom-control .oxygen-zoom-icon-active img + img {
+	display: block;
+}
+
+.oxygen-zoom-control .oxygen-zoom-icon-active img {
+	display: none;
+}
+
+.oxygen-currently-previewing {
+	width: 190px;
+}
+
+.oxygen-control.oxygen-template-previewing-control {
+	width: 160px;
+}
+
+/* shrink the padding and select dropdown size to fit better in the toolbar */
+
+.oxygen-toolbar-panel {
+	display: flex;
+}
+
+.oxygen-toolbar-panel .oxygen-control-label {
+	margin-bottom: 2px;
+	font-size: 13px;
+}
+
+.oxygen-toolbar-panel .oxygen-control-wrapper {
+	margin: 0px;
+}
+
+.oxygen-toolbar-panel .oxygen-select-box {
+	height: 29px;
+}
+
+.oxygen-toolbar-panel .oxygen-select-box-current {
+	font-size: 13px;
+}
+/* ------- */
+
+
+.oxygen-formatting-toolbar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.oxygen-formatting-toolbar .oxygen-formatting-done {
+	border-radius: 4px;
+	background: linear-gradient(180deg, #26A0F5 0%, #0C89E1 100%);
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+	font-size: 14px;
+	padding: 5px 15px;
+	cursor: pointer;
+}
+
+.oxygen-formatting-toolbar .oxygen-formatting-done:hover {
+	background: linear-gradient(180deg, #36B1F5 0%, #1C99F1 100%);
+}
+
+
+.oxygen-formatting-toolbar .oxygen-insert-data {
+	margin-left: 6px;
+	background-color: #586874;
+	border-radius: 4px;
+	font-size: 14px;
+	padding: 5px 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.oxygen-formatting-toolbar .oxygen-insert-data img {
+	margin-right: 6px;
+}
+
+.oxygen-formatting-toolbar .oxygen-button-list-button {
+	min-width: 28px;
+	flex-grow: 0;
+}
+.oxygen-formatting-toolbar .oxygen-button-list-button.oxygen-wrap-span-button {
+	min-width: 56px;
+}
+.oxygen-formatting-toolbar .oxygen-button-list-button.oxygen-wrap-span-button img {
+	width: 43px;
+}
+.oxygen-formatting-toolbar .oxygen-button-list-button.oxygen-clear-format-button img {
+	width: 26px;
+}
+.oxygen-formatting-toolbar .oxygen-button-list-button img:last-child{
+	display: none;
+}
+.oxygen-formatting-toolbar .oxygen-button-list-button:hover img:last-child{
+	display: block;
+}
+.oxygen-formatting-toolbar .oxygen-button-list-button:hover img:first-child{
+	display: none;
+}
+
+/* add+ sidebar */
+
+.oxygen-add-sidebar { 
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.oxygen-sidebar-top { /* we wrap the breadcrumb nav for subsections with this; flex-shrink is necessary for it to keep its size and not be compressed vertically */
+	flex-shrink: 0;
+}
+
+.oxygen-add-searchbar-wrapper {
+	margin: 0;
+	padding: 8px;
+	border-bottom: 1px solid #2b353c;
+	background-color: #434d55;
+}
+
+.oxygen-add-searchbar {
+	background-color: rgba(0, 0, 0, 0.28);
+	border: none;
+	color: #f9f9f9;
+	font-family: "Source Sans Pro";
+	font-size: 14px;
+	opacity: 0.9;
+	padding: 8px 30px 8px 30px;
+	width: 100%;
+	border-radius: 3px;
+	transition: 0.3s ease-in-out opacity;
+}
+
+.oxygen-icon-search,
+.oxygen-icon-close-outline {
+	fill: currentColor;
+	height: 16px;
+	position: absolute;
+	stroke: currentColor;
+	stroke-width: 0;
+	top: 16px; 
+	width: 16px;
+	color: #ffffff6e;
+}
+
+.oxygen-icon-search {
+	left: 15px;
+}
+
+.oxygen-icon-close-outline {
+	right: 15px;
+	display: none;
+}
+
+.oxygen-icon-close-outline:hover {
+	cursor: pointer;
+	color: white;
+}
+
+input:valid + svg + .oxygen-icon-close-outline {
+    display: block;
+}
+
+.oxygen-add-searchbar::placeholder {
+	color: #ffffff6e;
+}
+
+
+.oxygen-add-searchbar:focus {
+	opacity: 1.0;
+	outline: none;
+}
+
+.oxygen-add-searchbar:focus::placeholder, .oxygen-add-searchbar:focus + .oxygen-icon-search, .oxygen-add-searchbar:valid + .oxygen-icon-search {
+	color: #f9f9f9;
+}
+
+
+.oxygen-add-searchbar::placeholder,
+.oxygen-add-searchbar:-ms-input-placeholder,
+.oxygen-add-sidebar::-ms-input-placeholder {
+	opacity: 0.5;
+}
+
+.oxygen-add-search-result-highlighted {
+	border: 1px solid rgb(32, 154, 240);
+}
+
+.oxygen-add-panels-no-search-results {
+	color: #f9f9f9;
+	display: none;
+	font-family: "Source Sans Pro";
+	font-size: 14px;
+	font-weight: bold;
+	padding-top: 20px;
+	width: 100%;
+	text-align: center;
+	transition: 0.3s ease-in-out opacity;
+}
+
+.oxygen-add-panels {
+	background-color: rgb(44, 53, 60);
+	height: calc(100% - 51px);
+	display: flex;
+	flex-direction: column;
+}
+
+.oxygen-add-section-accordion {
+	color: #fff;
+	font-size: 14px;
+	padding: 16px 23px;
+	background-color: #434D55;
+	margin-bottom: 1px;
+	display: flex;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.oxygen-add-section-accordion:hover {
+	background-color: #535D65;
+}
+
+
+.oxygen-add-section-accordion img {
+	margin-left: auto;
+	width: 10px;
+}
+
+.oxygen-add-section-accordion-contents {
+	color: #fff;
+	padding: 20px;
+	padding-top: 2px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+    overflow: auto;
+    flex-basis: 0px;
+    flex-grow: 1;
+    align-content: flex-start;
+}
+
+/* somehow this makes the sections & elements tab of an individual design set not appear */
+/*
+.oxygen-add-section-accordion-contents::after {
+	content: "";
+	display: block;
+	width: 100%;
+	min-height: 40px;
+}
+*/
+
+
+
+.oxygen-add-section-accordion-contents-toppad {
+	padding-top: 15px;
+}
+
+
+.oxygen-add-section-accordion-contents h2 {
+	text-align: center;
+	color: rgba(255,255,255,0.3);
+	font-size: 14px;
+	font-weight: 600;
+	margin: 0;
+	width: 100%;
+	margin-top: 7px;
+}
+
+
+.oxygen-add-section-element {
+	border-radius: 4px;
+	background-color: #3A4249;
+	margin: 3px;
+	width: calc(50% - 6px);
+	padding-bottom: 9px;
+	padding-top: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+	font-size: 12px;
+	color: rgba(255,255,255,0.6);
+	height: 61px;
+	cursor: pointer;
+	text-align: center;
+	position: relative;
+}
+
+.oxygen-add-section-element img {
+	width: 59px;
+	height: 33px;
+	display: block;
+}
+
+
+.oxygen-add-section-element img + img {
+	display: none;
+}
+
+.oxygen-add-section-element:hover {
+	background-color: #24577E;
+	color: #fff;
+}
+
+.oxygen-add-section-element:hover img {
+	display: none;
+}
+
+.oxygen-add-section-element:hover img + img {
+	display: block;
+}
+
+.oxygen-add-section-element .oxygen-add-section-element-options {
+	display: none;
+	position: absolute;
+    width: 100%;
+    top: 64px;
+    left: 0;
+    border-radius: 4px;
+    background-color: #363c41;
+    z-index: 1;
+    box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.23);
+    color: rgba(255,255,255,0.6);
+    overflow: hidden;
+}
+.oxygen-add-section-element.oxygen-add-section-element-active .oxygen-add-section-element-options {
+	display: block;
+}
+.oxygen-add-section-element .oxygen-add-section-element-option {
+	padding: 4px;
+}
+.oxygen-add-section-element .oxygen-add-section-element-option:hover {
+	background: #24577E;
+	color: #fff;
+}
+
+
+
+.oxygen-add-section-subsection {
+	font-weight: 600;
+	width: 100%;
+	margin: 3px;
+	padding: 12px 16px;
+	padding-left: 12px;
+	border-radius: 4px;
+	background-color: #3A4249;
+	color: rgba(255,255,255,0.6);
+	font-size: 14px;
+	display: flex;
+	cursor: pointer;
+	align-self: flex-start;
+}
+
+.oxygen-add-section-subsection .oxygen-add-section-subsection-icon {
+	margin-right: 10px;
+	width: 30px;
+}
+
+
+.oxygen-add-section-subsection:hover {
+	background-color: #4A5259;
+}
+
+
+.oxygen-add-section-subsection img + img {
+	margin-left: auto;
+	width: 18px;
+}
+
+.oxygen-add-section-element + .oxygen-add-section-subsection {
+	margin-top: 12px;
+}
+
+.oxygen-add-section-designed-component {
+	overflow: hidden;
+	max-height: 700px;
+	margin: 20px 3px 3px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.oxygen-add-section-designed-component-header {
+	position: relative;
+	background: rgb(58, 66, 73);
+	color: #fff;
+	font-size: 12px;
+	padding: 6px 26px 6px 13px;
+	width: 100%;
+	text-transform: capitalize;
+}
+
+.oxygen-add-section-designed-component-title {
+	max-width: 182px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	display: inline-block;
+	padding-bottom: 1px;
+	font-weight: 300;
+	font-size: 12px;
+}
+
+.oxygen-add-section-designed-component-design-label {
+	text-transform: uppercase;
+	color: #b1b1b1;
+	padding: 2px 3px;
+	display: inline-block;
+	margin-right: 2px;
+	border: 1px solid #666;
+	border-radius: 2px;
+	font-size: 10px;
+	max-width: 70px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.oxygen-add-section-designed-component-add-icon {
+	position: absolute;
+    top: 7px;
+    right: 3px;
+    margin: 0 4px;
+}
+
+.oxygen-add-section-designed-component-add-icon:before {
+    content: "\e1cc";
+    font-family: 'Flaticons-Solid';
+    speak: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+.oxygen-add-section-designed-component img {
+    display: block;
+}
+
+.oxy-styles-present {
+	text-shadow: 0px 1px 5px rgba(70, 136, 200, 1), 0px -1px 4px rgba(70, 136, 200, 1), 2px 0px 5px rgba(70, 136, 200, 1), -2px 0px 5px rgba(70, 136, 200, 1);
+}
+
+.oxygen-sidebar-tabs-tab.oxy-styles-present::after {
+    content: "";
+    width: 5px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: rgba(218,231,255,1);
+    box-shadow: 0px 1px 5px rgba(70,136,200,1), 0px -1px 4px rgba(70,136,200,1), 2px 0px 5px rgba(70,136,200,1), -2px 0px 5px rgba(70,136,200,1);
+    margin-left: 8px;
+    margin-right: -13px;
+}
+
+.oxygen-sidebar-tabs-tab.oxy-styles-present, .oxygen-sidebar-advanced-subtab.oxy-styles-present {
+    text-shadow: none;
+}
+
+.oxygen-sidebar-advanced-subtab.oxy-styles-present span::after {
+    content: "";
+    width: 5px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: rgba(218,231,255,1);
+    box-shadow: 0px 1px 5px rgba(70,136,200,1), 0px -1px 4px rgba(70,136,200,1), 2px 0px 5px rgba(70,136,200,1), -2px 0px 5px rgba(70,136,200,1);
+    margin-left: 8px;
+}
+
+#oxygen-add-another-row {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+
+/* start of UI changes by Louis */
+
+
+
+/* blue toolbar buttons */
+
+.oxygen-add-button, .oxygen-save-button {
+    background: linear-gradient(180deg, #26A0F5 0%, #0C89E1 100%);
+    text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.5);
+}
+
+.oxygen-add-button:hover, .oxygen-save-button:hover {
+    background: linear-gradient(180deg, #41aaf3 0%, #2693e0 100%);
+}
+
+
+
+/* adjust padding and spacing for currently editing section */
+
+.oxygen-sidebar-currently-editing {
+    padding: 16px;
+}
+
+.oxygen-sidebar-currently-editing-top {
+	padding: 0 20px;
+}
+
+.oxygen-active-element {
+	margin-bottom: 6px;
+}
+
+.oxygen-active-element-name {
+	height: initial;
+}
+
+.oxygen-active-element-name div {
+    min-height: 24px;
+    line-height: 1.2;
+    overflow: initial;
+}
+
+.oxygen-active-element-icons {
+	line-height: 0;
+}
+
+
+
+/* adjust padding for control panel to match currently editing */
+
+.oxygen-sidebar-control-panel {
+    padding: 16px;
+}
+
+
+/* fix flex-shrink problem */
+.oxygen-sidebar-flex-panel, .oxygen-settings-breadcrumb {
+	flex-shrink: 0;
+}
+
+/* dynamic list component settings tweak */
+.oxygen-sidebar-flex-panel.oxygen-sidebar-dynamic-list-panel {
+	padding-bottom: 16px;
+}
+
+.oxygen-sidebar-dynamic-list-panel .oxygen-apply-button {
+	margin-bottom: 16px;
+}
+
+
+/* HOVER STYLES */
+
+/* state button */
+
+.oxygen-active-selector-box-state {
+	background-color: #556c7e8a;
+    color: #ffffff82;
+}
+
+.oxygen-active-selector-box-state:hover {
+	background-color: #556c7e;
+    color: #ffffff;
+}
+
+.oxygen-active-selector-box-state.oxy-styles-present {
+	color: #fff;
+}
+
+
+/* duplicate, delete, make link icons */
+
+.oxygen-active-element-icons img {
+	opacity: 0.8;
+}
+
+.oxygen-active-element-icons img:hover {
+	opacity: 1;
+}
+
+
+/* media query box */
+
+.oxygen-media-query-box img {
+	opacity: 0.8;
+}
+
+.oxygen-media-query-box:hover img {
+	opacity: 1;
+}
+
+.oxygen-media-query-box:hover img + img {
+	opacity: 0.8;
+}
+
+
+/* active selector box */
+
+.oxygen-active-selector-box input[value="Choose selector to edit..."] {
+	cursor: pointer;
+}
+
+.oxygen-active-selector-box input {
+	opacity: 0.8;
+}
+
+
+.oxygen-active-selector-box:hover input {
+	opacity: 1;
+}
+
+/* color picker */
+
+.wp-picker-container .wp-color-result {
+	cursor: pointer;
+}
+
+
+.wp-picker-container .wp-color-result:focus {
+	outline: none !important;
+}
+
+
+/* input range slider */
+
+.oxygen-measure-box-slider input[type=range] {
+	opacity: 0.8;
+}
+
+.oxygen-measure-box-slider input[type=range]:hover, .oxygen-measure-box-slider input[type=range]:focus {
+	opacity: 1;
+}
+
+/* right toolbar buttons */
+.oxygen-dom-tree-button {
+	padding: 0px 19px;
+}
+
+.oxygen-toolbar-menus {
+	width: 127px;
+	flex-shrink: 0;
+}
+
+.oxygen-toolbar-button span {
+    color: rgba(255,255,255,0.8);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.oxygen-toolbar-button:hover {
+    color: rgba(255,255,255,1);
+}
+
+.oxygen-dom-tree-button {
+	border-left: 1px solid #2c343a;
+}
+
+.oxygen-manage-menu:hover, .oxygen-back-to-wp-menu:hover, .oxygen-dom-tree-button:hover {
+	background-color: #535D65;
+}
+
+
+.oxygen-manage-menu img, .oxygen-back-to-wp-menu img, .oxygen-dom-tree-button img {
+	display: none;
+}
+
+
+.oxygen-manage-menu span + img, .oxygen-back-to-wp-menu span + img, .oxygen-dom-tree-button span + img {
+	display: initial;
+}
+
+
+.oxygen-manage-menu img + img, .oxygen-back-to-wp-menu img + img, .oxygen-dom-tree-button img + img {
+	display: initial;
+	opacity: 0.8;
+}
+
+.oxygen-manage-menu:hover img + img, .oxygen-back-to-wp-menu:hover img + img, .oxygen-dom-tree-button:hover img + img {
+	display: initial;
+	opacity: 1.0;
+}
+
+/* formatting toolbar */
+
+.oxygen-formatting-toolbar .oxygen-button-list-button:hover {
+	background-color: #24577E;
+}
+
+
+
+/* advanced tabs / subtabs */
+
+.oxygen-sidebar-advanced-subtab {
+	font-size: 14px;
+	line-height: 14px;
+	border-radius: 0;
+	border: 0;
+	padding: 13px 23px;
+	font-weight: 600;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-bottom: 5px;
+	background-color: #3e454c;
+}
+
+
+.oxygen-sidebar-advanced-subtab:hover {
+	background-color: #4e555c;
+}
+
+
+/* sidebar breadcrumb */
+.oxygen-sidebar-breadcrumb-all-styles {
+	font-weight: 600;
+}
+
+
+
+/* updated background colors for basic styles & advanced tabs, and their contents, and the breadcrumb, and the settings panels */
+
+.oxygen-sidebar-control-panel-basic-styles, .oxygen-sidebar-tabs-tab-active, .oxygen-sidebar-control-panel.oxygen-sidebar-advanced-home, .oxygen-sidebar-breadcrumb {
+	background-color: #2d353c;
+}
+
+.oxygen-sidebar-control-panel-basic-styles.oxygen-basic-styles-subtub {
+	background-color: #3B444C;
+}
+
+/* subtab styles for basic styles tab */
+.oxygen-sidebar-control-panel-basic-styles .oxygen-sidebar-advanced-subtab {
+	background-color: #3e454c;
+}
+
+.oxygen-sidebar-control-panel-basic-styles .oxygen-sidebar-advanced-subtab:hover {
+	background-color: #4e555c;
+}
+
+.oxygen-sidebar-control-panel-basic-styles.oxygen-basic-styles-subtub .oxygen-sidebar-advanced-subtab, .oxygen-global-settings .oxygen-sidebar-advanced-subtab {
+	background-color: #4e555c;
+}
+
+.oxygen-effects-tab .oxygen-sidebar-advanced-subtab,
+.oxygen-gradient-subtab.oxygen-sidebar-advanced-subtab {
+	background-color: #4B545C;
+}
+
+.oxygen-effects-tab .oxygen-sidebar-advanced-subtab:hover,
+.oxygen-gradient-subtab.oxygen-sidebar-advanced-subtab:hover {
+	background-color: #5C656D;
+}
+
+
+.oxygen-sidebar-control-panel-basic-styles.oxygen-basic-styles-subtub .oxygen-sidebar-advanced-subtab:hover, .oxygen-global-settings .oxygen-sidebar-advanced-subtab:hover {
+	background-color: #5e656c;
+}
+
+.oxygen-global-settings .oxygen-settings-main-tab {
+	background-color: #3e454c;
+}
+
+
+/* eliminate inset box shadows on button lists, inputs, and selects */
+.oxygen-icon-button-list-option-icon-wrapper, .oxygen-active-selector-box, .oxygen-media-query-box,
+.oxygen-button-list .oxygen-button-list-button,
+.oxygen-button-list .oxygen-button-list-button .oxygen-button-list-button-default {
+	box-shadow: none;
+}
+
+
+
+/* toolbar button dropdowns */
+
+.oxygen-toolbar-button-dropdown-option:hover {
+    color: #fff;
+    background-color: rgb(78, 85, 91);
+}
+
+.oxygen-toolbar-button-dropdown-option {
+    padding: 9px 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.oxygen-toolbar-button-dropdown {
+	box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
+/* toolbar sidescroll instead of wrap */
+.oxygen-formatting-toolbar .oxygen-button-list {
+	flex-wrap: nowrap;
+}
+
+.oxygen-content-editing .oxygen-toolbar-panels {
+	overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.oxygen-insert-data {
+	white-space: nowrap;
+}
+
+.oxygen-sidepanel-header-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 44px;
+	padding: 12px 16px;
+	border-bottom: 1px solid #19242e;
+	font-size: 16px;
+	color: #fff;
+	background: #353d44;
+	font-weight: 600;
+}
+
+.oxygen-show-settings-panel .oxygen-sidepanel-header-row {
+	margin: -20px -20px 20px -20px;
+	flex-shrink: 0;
+}
+
+.oxygen-close-icon {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	stroke-width: 0;
+	stroke: currentColor;
+	fill: currentColor;
+	cursor: pointer;
+}
+
+/* css for library */
+
+.oxygen-add-section-library-categories,
+.oxygen-folder-categories-categories,
+.oxygen-folder-no-padding,
+.ct-api-items:not(.oxygen-folder-design-sets-experimental) {
+	padding: 0px;
+	/*flex-direction: column;*/
+}
+.oxygen-add-section-library-menu {
+	width: 100%;
+}
+
+body:not(.single-ct_template) .oxygen-add-designset-templates {
+	display: none;
+}
+
+.oxygen-add-section-library-menu-category {
+	padding: 8px;
+}
+
+.oxygen-add-section-library-menu-category h1 {
+	font-size: 16px;
+	font-weight: 600;
+	color: rgba(255,255,255,0.6);
+	margin: 0;
+	padding: 12px;
+	padding-top: 4px;
+	text-align: center;
+}
+
+.oxygen-add-section-library-menu-subcategories {
+	margin-left: 0px;
+	display: flex;
+	flex-direction: column;
+}
+
+.oxygen-add-section-library-menu-subcategories a {
+	color: rgba(255,255,255,1);
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 16px 23px;
+	background-color: #434D55;
+	margin-bottom: 1px;
+	cursor: pointer;
+}
+
+a.oxygen-add-section-library-menu-subcategories-active, .oxygen-add-section-library-menu-subcategories a:hover {
+	color: rgba(255,255,255,1);
+	background-color: #535D65;
+	margin-right: -8px;
+}
+
+.oxygen-add-section-library-menu-subcategories a .oxygen-add-section-library-count {
+	margin-left: 0.5em;
+	font-size: 0.75em;
+	color: rgba(255,255,255,0.5);
+}
+
+.oxygen-add-section-library-menu-subcategories a img {
+	margin-left: auto;
+	transform: rotate(270deg);
+}
+
+
+body:not(.choosing-selector) #oxygen-sidebar {
+	z-index: 2;
+	/*position: relative;*/
+}
+
+.oxygen-add-section-library-flyout-panel {
+	font-family: "Source Sans Pro";
+	-webkit-font-smoothing: antialiased;
+	background-color: #535D65;
+	position: fixed;
+	top: 58px;
+	left: 0px;
+	width: 300px;
+	height: calc(100vh - 58px);
+	padding: 20px;
+	overflow: scroll;
+	/*z-index: 500;*/
+	transition: 0.3s ease-in-out left;
+}
+
+body:not(.choosing-selector) .oxygen-add-section-library-flyout-panel {
+	z-index: 1;
+}
+
+
+.oxygen-add-section-library-flyout-panel-open {
+	left:300px;
+}
+
+.oxygen-add-section-library-flyout-category {
+	display: flex;
+	flex-direction: column;
+
+}
+
+.oxygen-add-section-library-addable {
+    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
+    max-height: 400px;
+    overflow: hidden;
+    min-height: 42px;
+}
+
+.oxygen-add-section-library-addable img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+    background-color: #fff;
+}
+
+.oxygen-add-section-library-addable-details {
+	position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    background-color: rgba(0,0,0,0.8);
+    font-size: 14px;
+    opacity: 0;
+    transition: 0.5s ease-in-out all;
+    font-weight: 600;
+    pointer-events: none;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.oxygen-add-section-library-addable-details.hilite {
+  background-color: rgba(112, 70, 219, 0.8);
+}
+
+.ct-pro-support-notice-modal {
+  position: fixed;
+  z-index:9999999999;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.oxygen-color-picker-requires-pro, .oxygen-color-picker-requires-pro input {
+	cursor: not-allowed;
+}
+
+.oxygen-color-picker-requires-pro > .oxygen-color-picker-color > input {
+  border-radius: 50%;
+  padding-right: 13px;
+  pointer-events: none;
+}
+
+.oxygen-add-section-library-addable:hover .oxygen-add-section-library-addable-details {
+	opacity: 1;
+}
+
+div#ctdynamicdata-popup {
+	z-index: 9999999999;
+    position: fixed;
+}
+
+.oxy-dynamicdata-popup-background {
+	z-index: 9999999998;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.oxygen-dynamic-data-browse {
+	background-color: rgba(255,255,255,0.2);
+    border-radius: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #fff;
+    height: 21px;
+    margin-right: 6px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#wp-link-wrap .oxygen-dynamic-data-browse {
+	background-color: #656B71;
+	padding: 4px 6px;
+	display: inline-flex;
+	font-family: "Source Sans Pro", serif;
+	border-radius: 0;
+}
+
+.oxygen-dynamic-data-browse:before {
+  content: '';
+  background: url(../oxygen-icons/toolbar-icons/insert-data.svg) no-repeat;
+  width: 16px;
+  height: 12px;
+  background-size: contain;
+  
+}
+
+.oxygen-dynamic-data-browse:hover:before {
+  background-image: url(../oxygen-icons/toolbar-icons/insert-data--hover.svg)
+}
+
+.oxygen-small-progress:after {
+  content: '\f013';
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+  position: absolute;
+  right: 10px;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+
+.oxygen-add-section-subsection.oxygen-small-progress {
+	position: relative;
+}
+
+.oxygen-add-section-subsection.oxygen-small-progress:after {
+  margin-right: 45px;
+  margin-top: 3px
+}
+
+#oxygen-sidebar .oxygen-sidebar-control-panel .select2-container:nth-child(2) {
+  width: 100% !important;
+}
+#oxygen-sidebar .oxygen-sidebar-control-panel .select2-container:nth-child(3) {
+  display: none !important;
+}
+
+#oxygen-sidebar .oxygen-sidebar-control-panel .select2-container li {
+  margin-bottom: 0px;
+}
+
+#oxygen-sidebar .oxygen-sidebar-control-panel span.select2-selection {
+	background-color: #222b34;
+	font-size: 14px;
+	color: #fff;
+	border: none;
+	line-height: 23px;
+}
+
+#oxygen-sidebar .oxygen-sidebar-control-panel span.select2-selection .select2-selection__choice {
+	background-color: #393E44;
+    border-color: #33363a;
+}
+
+/* open dropdown */
+.oxygen-builder-body .select2-container--open .select2-dropdown {
+    border-color: black;
+    background-color: #21262d;
+    color: #fff;
+    box-shadow: 0px 10px 12px rgba(0,0,0,0.3);
+}
+/* previously selected */
+.oxygen-builder-body .select2-container--default .select2-results__option[aria-selected=true] {
+	background-color: rgba(255,255,255,0.2);
+}
+/* moused over/currently selected */
+.oxygen-builder-body .select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #78b7ff;
+    color: black;
+}
+.oxygen-builder-body .select2-search__field {
+	margin-top: 9px !important;
+	color: white;
+}
+.oxygen-builder-body .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+	color: white;
+}
+.oxygen-builder-body .select2-search.select2-search--inline {
+	width: 100%;
+}
+.oxygen-builder-body .select2-search.select2-search--inline input {
+	width: 100% !important;
+}
+
+
+
+.oxygen-data-dialog[ng-show='tinyMCEWindow'] {
+	display: flex;
+    flex-direction: column;	
+    width: 48%;
+    min-height: 590px;
+}
+
+.oxygen-data-dialog[ng-show='tinyMCEWindow'] .oxygen-apply-button {
+	align-self: center;
+	margin-top: auto;
+}
+
+.oxygen-sidebar-loader {
+	position: absolute;
+    font-size: 12px;
+    top: 30%;
+    left: 43%;
+}
+.oxygen-sidebar-loader .fa {
+	position: absolute;
+    top: 30px;
+    left: 40%;
+    color: #cccccc;	
+}
+
+.oxygen-overlay-property-msg {
+	display: none !important;
+	position: fixed;
+    left: 17px;
+    top: 0;
+    margin-top: 10px; 
+    width: 267px;
+    padding: 5px;
+    background-color: #ffc640;
+    border-radius: 3px;
+    color: #402a1a;
+    line-height: 1.2;
+    font-size: 12px;
+    text-align: justify;
+    z-index: 99999999;
+    transition: opacity ease 0.1s;
+}
+.oxygen-overlay-property-msg:before {
+	content: " ";
+	display: block;
+	position: absolute;
+	top: -12px;
+	left: calc(50% - 6px);
+	border: 6px solid transparent;
+	border-bottom: 6px solid #ffc640;
+}
+
+
+/* Global Colors */
+.oxygen-global-colors-wrap {
+	width: 202px;
+	color: #fff;
+	display: none;
+	padding: 16px;
+	border: 1px solid #262E35;
+	border-top-width: 0; 
+    background-color: #262E35;
+    border-radius: 0px 0px 4px 4px;
+}
+.wp-picker-container .wp-picker-open ~ .wp-picker-holder .oxygen-global-colors-wrap {
+	display: block;
+	padding-top: 8px;
+	padding-bottom: 0px;
+}
+.oxygen-global-colors-wrap h2 {
+	font-size: 14px;
+	line-height: 1;
+	line-height: 16px;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.7);
+}
+.oxygen-global-colors {
+	display: flex;
+	margin-top: 6px;
+	flex-wrap: wrap;
+}
+.oxygen-add-global-color-button {
+	background-color: #556C7E;
+    border-radius: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    color: #fff;
+    height: 16px;
+    margin-right: 6px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.oxygen-global-color {
+	width: 19px;
+	height: 19px;
+	border-radius: 50%;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	cursor: pointer;
+}
+.oxygen-active-global-color {
+	box-shadow: 0 0 0 2px rgba(255,255,255,0.95);
+}
+.oxygen-global-colors-wrap .oxygen-input,
+.oxygen-global-colors-wrap .oxygen-select-box {
+	height: 22px;
+	margin-top: 3px;
+}
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-global-colors-wrap .oxygen-input,
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-global-colors-wrap .oxygen-select-box,
+.oxygen-sidebar-control-panel-basic-styles:not(.oxygen-basic-styles-subtub) .oxygen-global-colors-wrap .oxygen-select-box-options {
+	background-color: #363b42;
+}
+.oxygen-global-colors-edit-color .oxygen-global-color,
+.oxygen-global-colors-new-color .oxygen-global-color {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    margin-bottom: 0px;
+}
+.oxygen-manage-global-colors-link {
+	text-align: right;
+	font-size: 12px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	align-items: right;
+}
+.oxygen-add-global-color-icon {
+	cursor: pointer;
+	margin-right: 6px;
+	height: 16px;
+	opacity: 0.3;
+}
+.oxygen-add-global-color-icon:hover {
+	opacity: 0.8;
+}
+.oxygen-add-global-color-icon {
+	display: none;
+}
+.oxy-not-global-color-value.oxy-not-empty-color-value .oxygen-add-global-color-icon {
+	display: block;
+}
+.oxy-global-color-label {
+    position: absolute;
+    background-color: #3b4148;
+    color: #fff;
+    z-index: 10;
+    left: 34px;
+    padding: 4px 18px 4px 4px;
+    border: 1px solid #2d353c;
+    border-radius: 3px;
+    font-size: 12px;
+    max-width: calc(100% - 41px);
+    max-height: 24px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.oxy-global-color-label-remove {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    cursor: pointer;
+    opacity: 0.5;
+    padding: 0 3px;
+    font-size: 15px;
+}
+.oxy-global-color-label-remove:hover {
+    opacity: 0.9;
+}
+.oxygen-global-colors-new-color .oxygen-select,
+.oxygen-global-colors-new-color-dialog .oxygen-input {
+	margin-bottom: 6px;
+}
+.oxygen-global-colors-edit-color .oxygen-input input,
+.oxygen-global-colors-new-color-dialog .oxygen-input input {
+	padding-left: 2px;
+}
+.oxygen-global-colors-edit-color .oxygen-add-global-color-button,
+.oxygen-global-colors-new-color-dialog .oxygen-add-global-color-button {
+	margin-right: 0;
+	margin-top: 3px;
+}
+.oxygen-global-colors-set-heading img {
+	width: 15px;
+    opacity: 0.5;
+    margin-left: 4px;
+    cursor: pointer;
+}
+.oxygen-global-colors-set-heading img:hover {
+    opacity: 1;
+}
+.oxygen-global-colors-color-details {
+	display: flex;
+	margin-top: 12px;
+	align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,0,0,0.3);
+}
+.oxygen-global-colors-current-set {
+	font-weight: bold;
+}
+.oxygen-global-colors-color-details img {
+	align-self: right;
+	cursor: pointer;
+	width: 20px;
+    opacity: 0.3;
+    margin-left: 8px;
+    cursor: pointer;
+}
+.oxygen-global-colors-color-details img:first-child {
+    cursor: pointer;
+}
+
+.oxygen-global-colors-color-details img:hover {
+	opacity: 1;
+}
+
+.oxygen-global-colors-set {
+	margin-bottom: 16px;
+}
+
+
+.oxygen-add-global-color-button {
+	width: 19px;
+	height: 19px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.oxygen-global-colors-color-details .oxygen-global-colors-current-set {
+	display: none;
+}
+
+.oxygen-global-colors-color-details .oxygen-global-colors-current-color {
+	margin-right: auto;
+	font-size: 14px;
+	line-height: 1;
+	color: #fff;
+	font-weight: 400;
+}
+
+.oxygen-global-colors-set .oxygen-global-colors-set-heading h2 {
+	margin-right: auto;
+}
+
+
+.oxygen-global-colors-edit-color, .oxygen-global-colors-new-color-set, .oxygen-settings-content .oxygen-global-colors-new-color {
+	margin-top: 16px;
+	padding-top: 12px;
+	border-top: 1px solid rgba(0,0,0,0.3);
+}
+
+.oxygen-global-colors-edit-color h2, .oxygen-global-colors-new-color-set h2, .oxygen-global-colors-new-color h2 {
+	font-size: 14px;
+	color: #fff;
+	font-weight: 400;
+}
+
+.oxygen-global-colors-new-color-dialog .oxygen-global-colors-new-color h2 {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.oxygen-global-colors-edit-color .oxygen-add-global-color-button, .oxygen-global-colors-new-color-set .oxygen-add-global-color-button, .oxygen-global-colors-new-color .oxygen-add-global-color-button {
+    height: auto;
+    width: 80px;
+    padding: 6px 13px;
+    font-weight: bold;
+    color: #fff;
+    opacity: 0.8;
+    margin-top: 12px;
+    border: 1px solid #fff;
+    background-color: initial;
+    margin-left: auto;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.oxygen-global-colors-new-color .oxygen-add-global-color-button:hover {
+    opacity: 1;
+}
+
+.oxygen-global-colors-edit-color .oxygen-input, .oxygen-global-colors-edit-color .oxygen-select-box, .oxygen-global-colors-new-color-set .oxygen-input, .oxygen-global-colors-new-color .oxygen-input, .oxygen-global-colors-new-color .oxygen-select-box {
+	height: 31px;
+}
+
+.oxygen-global-colors-add-color-set {
+	text-align: right;
+    text-decoration: underline;
+    color: rgba(255,255,255,0.8);
+}
+
+.oxygen-global-colors-new-color-bg {
+	z-index: 9999999998;
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; 
+}
+.oxygen-global-colors-new-color-dialog {
+	position: fixed;
+	z-index: 9999999999;
+	color: #f4f4f4;
+    font-family: "Source Sans Pro";
+    -webkit-font-smoothing: antialiased;
+    background-color: #363E45;
+    box-shadow: 0px 0px 0px 1000px rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 3px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.oxygen-remove-color-icon {
+    width: 16px;
+    margin-top: 12px;
+	opacity: 0.5;
+	transition: ease 0.2 opacity;
+}
+.oxygen-remove-color-icon:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.oxygen-text.oxygen-overlay-header-text {
+    font-size: 11px;
+}
+
+/* basic settings for if else wrap block */
+
+/* conditional */
+
+.oxygen-condition-builder-condition {
+	display: flex;
+	flex-direction: row;
+	font-size: 11px;
+	margin-bottom: 8px;
+	align-items:  flex-start;
+    justify-content: flex-start;
+}
+
+.oxygen-condition-builder-condition-name, .oxygen-condition-builder-condition-value {
+	background-color: rgba(255,255,255,0.1);
+	background-clip: padding-box;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 4px 5px;
+	line-height: 1;
+	border-radius: 2px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.oxygen-condition-builder-condition-name span, .oxygen-condition-builder-condition-value span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.oxygen-condition-builder-condition-name span {
+	width: 85px;
+	color: #a0ffd9;
+}
+
+.oxygen-condition-builder-condition-value span {
+	width: 44px;
+	color: #85dbff;
+}
+
+.oxygen-condition-builder-condition .oxygen-dynamic-data-browse {
+    margin-right: 0px;
+    margin-left: auto;
+}
+
+.oxygen-condition-builder-change-triangle {
+  width: 0; 
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent; 
+  border-top: 4px solid currentColor;
+  margin-left: 4px;
+  color: white;
+  opacity: 0.8;
+}
+
+
+.oxygen-condition-builder-condition-operator {
+	margin: 0px 3px auto 3px;
+	color: white;
+	width: 30px;
+	text-align: center;
+	font-family: monospace;
+	font-size: 12px;
+	background-color: rgba(255,255,255,0.1);
+	background-clip: padding-box;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 4px 5px;
+	line-height: 1;
+	border-radius: 2px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.oxygen-condition-builder-condition-preview {
+	margin-left: 6px;
+	position: relative;
+  	cursor: pointer;
+    display: inline-flex;
+}
+
+.oxygen-condition-builder-condition-preview img {
+	width: 16px;
+}
+
+.oxygen-condition-builder-condition-delete {
+	margin-left: 6px;
+	display: inline-flex;
+}
+
+.oxygen-condition-builder-condition-delete img {
+	width: 16px;
+}	
+
+
+.oxygen-condition-builder-add-condition {
+	display: inline-block;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.oxygen-condition-builder-add-condition a {
+	padding: 7px 14px;
+	color: white;
+	border: 1px solid;
+	border-radius: 3px;
+	font-size: 14px;
+	line-height: 1;
+	text-decoration: none;
+	opacity: 0.8;
+	margin-left: auto;
+}
+
+.oxygen-condition-builder-condition-name,
+.oxygen-condition-builder-condition-value,
+.oxygen-condition-builder-condition-operator {
+	min-height: 22px;
+}
+div.oxygen-data-dialog.ct-global-conditions-add-modal {
+    box-shadow: none;
+}
+
+div.oxygen-toolbar-button-dropdown.ct-global-conditions-preview-dropdown {
+    display: inherit;
+}
+
+.oxygen-toolbar-button-dropdown.ct-global-conditions-preview-dropdown {
+  position: absolute;
+  width: 126px;
+  right: 0;
+  left: unset;
+}
+
+#ct-modal-if-conditions svg.oxygen-close-icon {
+	float:right;
+	margin-top: 3px;
+}
+
+#ct-modal-if-conditions .oxygen-add-button {
+	margin: 130px auto;
+    width: 270px;
+    display: block;
+    padding: 20px 0;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#ct-modal-if-conditions .oxygen-condition-builder-condition {
+	margin-bottom: 10px;
+}
+
+#ct-modal-if-conditions .oxygen-condition-builder-condition > .oxygen-control {
+	width: 20%;
+	margin-right: 20px;
+}
+
+.global-conditions-custom-value {
+	width: 100px;
+}
+
+#ct-modal-if-conditions .placeholder-text,
+.global-conditions-custom-value::placeholder {
+	color: #666;
+    font-size: 12px;
+}
+
+#ct-modal-if-conditions .oxygen-conditions-group-container {
+	padding-left: 10px;
+}
+#ct-modal-if-conditions .oxygen-conditions-group-container .oxygen-conditions-group-label {
+	font-weight:bold;
+}
+#ct-modal-if-conditions .oxygen-conditions-group-container .oxygen-conditions-group-label:empty {
+	display: none;
+}
+div.oxy-condition-menu-container {
+	position: relative;
+}
+div.oxy-condition-menu-container > div.oxy-condition-menu {
+	top:20px;
+	left: -5px;
+    position: absolute;
+    z-index:11;
+    background-color: #3a444c;
+    font-family: 'Source Sans Pro';
+    font-size: 14px;
+    line-height: 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+    width: 236px;
+    cursor: initial;
+}
+
+div.oxy-condition-menu h1.oxy-condition-menu-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    font-family: 'Source Sans Pro';
+}
+
+div.oxy-condition-menu a.oxy-condition-menu-button {
+  display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 16px;
+    background-color: #586874;
+    border: 1px solid #586874;
+    color: #ffffff;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+div.oxy-condition-menu a.oxy-condition-menu-button:hover {
+background-color: #24577E;
+border: 1px solid #24577E;
+}
+
+div.oxy-condition-menu div.oxy-condition-menu-divider {
+  height: 1px;
+    min-height: 1px;
+    max-height: 1px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.10);
+    margin-bottom: 12px;
+}
+
+div.oxy-condition-menu h1.oxy-condition-menu-behavior {
+
+  color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    font-family: 'Source Sans Pro';
+}
+
+div.oxy-condition-menu div.oxy-condition-menu-radios label {
+	cursor: pointer;
+}
+
+div.oxy-condition-menu div.oxy-condition-menu-radios  input {
+ 	margin-right: 6px;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+div.oxy-condition-menu > div {
+	position: relative;
+}
+
+div.oxy-condition-menu div.oxy-condition-menu-backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top:0;
+  left:0;
+}
+
+
+.oxy-tooltip .oxy-tooltip-text {
+    display: none;
+}
+
+.oxy-tooltip:hover .oxy-tooltip-text {
+    display: block;
+    position: absolute;
+    bottom: 26px;
+    left: 16px;
+    padding: 8px;
+    background-color: #000;
+    font-size: 12px;
+    min-width: 200px;
+    text-transform: none;
+    line-height: 1.4;
+    z-index:9;
+}
+
+.ct-link-button-highlight {
+-webkit-filter: drop-shadow(0px 1px 5px rgba(70,136,200,1)) drop-shadow(0px -1px 4px rgba(70,136,200,1));
+	filter: drop-shadow(0px 1px 5px rgba(70,136,200,1)) drop-shadow(0px -1px 4px rgba(70,136,200,1));
+}
+
+.oxygen-condition-builder-condition-preview-animating img {
+  animation: oxygen-condition-builder-condition-preview-animating 1s infinite;
+}
+
+@keyframes oxygen-condition-builder-condition-preview-animating {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+  	opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.ct-global-conditions-add-modal li.hilite {
+  background-color: grey;
+}
+
+.global-conditions-custom-value {
+	background: #222B34;
+    border: none;
+    color: white;
+}
+
+.oxygen-transform-control-wrap {
+	border: 1px solid rgba(255,255,255,0.3);
+	border-radius: 4px;
+	padding: 12px;
+	padding-bottom: 0px;
+	margin-bottom: 12px;
+}
+.oxygen-remove-transform {
+	opacity: 0.5;
+	position: relative;
+    right: -6px;
+    top: -6px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.2);
+    padding: 2px;
+    border-radius: 50%;
+    display: block;
+    line-height: 14px;
+}
+.oxygen-remove-transform:hover {
+	opacity: 1;
+}
+
+.oxygen-font-weight-link {
+    font-size: 12px;
+    margin-top: -3px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+.oxygen-font-weight-link:hover {
+	opacity: 1;
+}
+.oxygen-font-weight-options {
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-bottom: 24px;
+    margin-top: -12px;	
+}
+.oxygen-font-weight-options .oxygen-checkbox {
+	flex-basis: 33%;
+}
+
+
+i.ct-icon-if-conditions {
+  display: inline-block;
+  width:12px;
+  height:12px;
+  margin-right: 6px;
+  background: url('../oxygen-icons/currently-editing/condition.svg');
+  background-size: cover;
+  opacity: 0.85;
+}
+
+.ct-dom-tree-node-selected i.ct-icon-if-conditions {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+    opacity: 0.75;
+}
+
+.oxy-product-builder-elements div:first-child{
+	display: none !important;
+}
+.oxy-product-builder-elements-label {
+	margin-top: 20px;
+	text-align: center;
+}
+
+/* Show/Hide left sidebar */
+@keyframes oxygenUIElementFlashing {
+    0%,50%,to {
+        filter: brightness(100%);
+    }
+    25%,75% {
+        filter: brightness(150%);
+    }
+}
+
+.oxygen-left-button-wrap {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.oxygen-left-button-wrap .oxygen-add-button {
+    height: 38px;
+}
+
+.oxygen-hide-sidebar-button,
+.oxygen-show-sidebar-button {
+    position: absolute;
+    bottom: 0;
+	border-right: 1px solid #313A40;
+	background-color: #116daf;
+    color: #fff;
+    padding: 0px 20px;
+	width: 113px;
+    height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.oxygen-hide-sidebar-button:hover,
+.oxygen-show-sidebar-button:hover {
+    background-color: #0C89E1;
+}
+.oxygen-hide-sidebar-button {
+    left: -100%;
+}
+.oxygen-hide-sidebar-button.active {
+    left: 0;
+}
+.oxygen-show-sidebar-button {
+    left: 100%;
+}
+.oxygen-show-sidebar-button.active {
+    left: 0;
+}
+.oxygen-show-sidebar-button.flashing {
+    background-color: #116daf;
+    animation: oxygenUIElementFlashing 1s linear 1;
+}
+.oxygen-show-sidebar-button.flashing:hover {
+    animation: none;
+}
+
+.oxygen-hide-sidebar-button span {
+    margin-left: 3px;
+}
+.oxygen-show-sidebar-button span {
+    margin-right: 3px;
+}
+
+.ui-collapse {
+    width: 0 !important;
+}
+.ui-hide {
+    display: none !important;
+}
+
+/* prevent breadcrumb wrapping but hide scrollbar */
+
+.oxygen-sidebar-breadcrumb.oxygen-sidebar-subtub-breadcrumb {
+	overflow: scroll;
+	-ms-overflow-style: none;  // IE 10+
+	scrollbar-width: none;  // Firefox
+}
+
+.oxygen-sidebar-breadcrumb.oxygen-sidebar-subtub-breadcrumb::-webkit-scrollbar { 
+	display: none;
+}
+
+.oxygen-sidebar-breadcrumb-all-styles {
+	white-space: nowrap;
+}
+
+.oxygen-sidebar-breadcrumb-current {
+	white-space: nowrap;
+}
+
+/* presets dialog */
+#oxygen-presets-dialog .oxygen-close-icon {
+	float: right;
+}
+#oxygen-presets-dialog #oxygen-preset-json-container {
+	user-select: text;
+	overflow-y: auto;
+	font-family: monospace;
+    font-size: 12px;
+    max-height: calc(100% - 140px);
+}
+
+/* Empty sidebar message */
+.oxygen-editing-empty-message {
+    color: #FFFFFF;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.5;
+    z-index: 0;
+}
+.oxygen-editing-empty-message .oxygen-sidebar-template {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.5;
+}
+.oxygen-editing-empty-message .oxygen-sidebar-template img {
+    margin-bottom: 8px;
+}
+
+/*Composite Elements*/
+.oxygen-add-composite-element {
+    position: relative;
+    overflow: hidden;
+}
+.oxygen-add-section-element.oxygen-add-composite-element:hover > img {
+    mix-blend-mode: screen;
+    opacity: 0.5;
+}
+
+.oxygen-add-composite-element:before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    background-color: #a586f5;
+    background-image: url("../images/Oxygen-O.png");
+    background-size: contain;
+    background-position: center center;
+    background-repeat: none;
+    border-radius: 0px 0px 4px 0px;
+    border: 2px solid #a586f5;
+}
+
+.custom-attributes-icons {
+	flex-direction: row;
+	margin-bottom: 0px;
+}
+.custom-attributes-icons img {
+	margin-right: 6px;
+	opacity: 0.9;
+}
+.custom-attributes-icons img:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+.oxygen-control-row.custom-attributes-name-row {
+	margin-bottom: 0;
+}
+
+/* Undo redo */
+.oxygen-undo-redo-menus {
+	width: 90px;
+}
+
+.oxygen-history-button {
+	background-color: #434D55;
+	font-size: 13px;
+	padding: 0px 10px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	position: relative;
+}
+
+.oxygen-history-button img {
+    margin-right: 6px;
+}
+
+.oxygen-undo-redo-buttons {
+    border-top: 1px solid #313A40;
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.oxygen-undo-button,
+.oxygen-redo-button {
+	background-color: #434D55;
+	font-size: 13px;
+	padding: 0px 10px;
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.oxygen-redo-button {
+	border-left: 1px solid #313A40;
+}
+
+.oxygen-undo-button:hover,
+.oxygen-redo-button:hover {
+	background-color: #535D65;
+}
+
+.oxygen-undo-button img,
+.oxygen-redo-button img {
+	height: 16px;
+	display: block;
+}
+
+.oxygen-undo-button img + img,
+.oxygen-redo-button img + img {
+	display: none;
+}
+
+.oxygen-undo-button:hover img,
+.oxygen-redo-button:hover img {
+	display: none;
+}
+
+.oxygen-undo-button:hover img + img,
+.oxygen-redo-button:hover img + img {
+	display: block;
+}
+
+.oxygen-undo-button.disabled,
+.oxygen-redo-button.disabled {
+	background-color: #434D55;
+	cursor: default;
+}
+
+.oxygen-undo-button.disabled img,
+.oxygen-redo-button.disabled img {
+	display: block;
+}
+
+.oxygen-undo-button.disabled img + img,
+.oxygen-redo-button.disabled img + img {
+	display: none;
+}
+
+.oxygen-undo-button.disabled span,
+.oxygen-redo-button.disabled span {
+	color: rgba(255,255,255,0.8);
+}
+
+#ct-history {
+    height: calc(100% - 78px);
+    overflow: auto;
+}
+
+.ct-history-tab {
+    position: relative;
+}
+
+.ct-history-empty {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    color: #FFFFFF;
+    opacity: 0.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.ct-history-items {
+    padding-top: 8px;
+    padding-bottom: 5px;
+}
+.ct-history-items .ct-history-item {
+    background-color: #3f464e;
+    border-radius: 2px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    height: 30px;
+    line-height: 12px;
+    margin: 3px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 999;
+    padding: 5px 10px;
+}
+.ct-history-items .ct-history-item.active {
+    background-color: #7bacd0;
+    color: #000000;
+    cursor: default;
+}
+
+/* Edit Mode CSS */
+
+.oxygen-edit-only-mode:not(.oxygen-has-enabled-elements):not(.oxygen-can-use-reusable-parts):not(.oxygen-can-use-design-library) .oxygen-hide-sidebar-button, 
+.oxygen-edit-only-mode:not(.oxygen-has-enabled-elements):not(.oxygen-can-use-reusable-parts):not(.oxygen-can-use-design-library) .oxygen-show-sidebar-button {
+	height: 100%
+}
+.oxygen-edit-only-mode:not(.oxygen-has-enabled-elements):not(.oxygen-can-use-reusable-parts):not(.oxygen-can-use-design-library) .oxygen-left-button-wrap {
+	width: 113px
+}
+.oxygen-edit-only-mode .oxygen-toolbar-button-dropdown {
+	top: 57px;
+}
+
+.oxygen-edit-only-mode:not(.oxygen-has-enabled-elements):not(.oxygen-can-use-reusable-parts):not(.oxygen-can-use-design-library) .oxygen-add-panels {
+    display: none;
+}
+.oxygen-edit-only-mode:not(.oxygen-has-enabled-elements):not(.oxygen-can-use-reusable-parts):not(.oxygen-can-use-design-library) .oxygen-add-searchbar-wrapper {
+    display: none;
+}
+
+/* Hide 'Insert Data' Button in Top Bar */
+.oxygen-edit-only-mode .oxygen-formatting-toolbar .oxygen-insert-data {
+    opacity: 0;
+    pointer-events: none;
+    height: 0px;
+}
+
+.oxygen-edit-only-mode .oxygen-link-button {
+	display: none;
+}
+.oxygen-edit-only-mode .oxygen-dynamic-data-browse {
+	display: none;
+}
+.oxygen-edit-only-mode .oxygen-classes-dropdown li:first-child {
+	display: none;
+}
+
+/* Hide PHP, JavaScript, & CSS tabs in Properties Pane */
+.oxygen-edit-only-mode .oxygen-sidebar-advanced-subtab[ng-click*='code'] {
+    display: none;
+}
+
+/* Disabled Structure nodes */
+.ct-dom-tree-node-disabled .ct-dom-tree-node-anchor {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    pointer-events: none;
+}
+
+/* Hide dom tree delete & more options buttons */
+.oxygen-edit-only-mode .ct-node-options .ct-more-options-icon {
+    display: none !important;
+}
+
+.oxygen-edit-only-mode .oxygen-classes-dropdown li > img {
+	display: none;
+}
+
+/* Hide flexbox layout controls */
+.oxygen-edit-only-mode .oxygen-ct_div_block-flex-direction,
+.oxygen-edit-only-mode .oxygen-control-rows-multiple-inset[ng-show*='flex-direction'],
+.oxygen-edit-only-mode .oxygen-ct_section-flex-direction,
+.oxygen-edit-only-mode .oxygen-grid-controls,
+.oxygen-edit-only-mode .oxygen-ct_div_block-width,
+.oxygen-edit-only-mode .oxygen-ct_image-width,
+.oxygen-edit-only-mode .oxygen-ct_image-height,
+.oxygen-edit-only-mode .oxygen-ct_link-width,
+.oxygen-edit-only-mode .oxygen-ct_link-flex-direction {
+    opacity: 0;
+    pointer-events: none;
+    height: 0px;
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+/* Remove bottom margin, fixing unsightly gap after hiding controls in Properties Pane */
+.oxygen-edit-only-mode .oxygen-sidebar-control-panel-basic-styles .oxygen-control-row {
+	margin-bottom: 0px;
+}

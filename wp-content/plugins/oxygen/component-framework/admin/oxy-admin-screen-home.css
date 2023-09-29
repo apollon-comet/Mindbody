@@ -1,0 +1,56 @@
+.oxygen-admin-screen-home-flex {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+}
+
+.oxygen-admin-screen-home-left {
+	max-width: 480px;
+}
+
+
+.oxygen-admin-screen-home-version {
+	font-size: 14px;
+}
+
+.oxygen-admin-screen-home > div > a > .dingdong {
+	border: 1px solid;
+	padding: 7px 14px;
+	text-decoration: none;
+	border-radius: 3px;
+	font-weight: 700;
+	display: inline-block;
+}
+
+
+.oxygen-admin-screen-home-section {
+	margin-bottom: 40px;
+}
+
+.oxygen-admin-screen-home-section-design-set-chooser {
+	background-color: rgba(0,0,0,0.05);
+	padding: 24px;
+	max-width: 400px;
+	margin-left: 40px;
+}
+
+.oxygen-admin-screen-home-section-design-set-chooser-text {
+	font-style: italic;
+	margin-bottom: 8px;
+}
+
+.oxygen-admin-screen-home-section-design-set-chooser h3 {
+	margin-top: 0;
+}
+
+@media (max-width: 800px) {
+	.oxygen-admin-screen-home-flex {
+		flex-direction: column;
+	}
+	.oxygen-admin-screen-home-section-design-set-chooser {
+		margin-left: 0;
+		order: -1;
+		max-width: 100%;
+		margin: 20px;
+	}
+}

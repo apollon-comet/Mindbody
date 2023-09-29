@@ -1,0 +1,1 @@
+{"messageId":"J3ttRiWvQcLgD4LuEQJaYa","eventId":"appointmentBooking.cancelled","eventSchemaVersion":1.0,"eventInstanceOriginationDateTime":"2021-10-16T16:55:45Z","eventData":{"siteId":248563,"appointmentId":398012}}
